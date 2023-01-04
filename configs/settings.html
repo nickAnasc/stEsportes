@@ -1,0 +1,974 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    .all-content,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    label,
+    div {
+        font-family: 'Nunito', sans-serif!important;
+    }
+
+    .group h3 {
+        margin: 0;
+        font-size: 25px;
+        font-weight: bold;
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .group h3::after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 18px;
+        height: 5px;
+        background-color: #2d90c5;
+        bottom: -5px;
+    }
+
+    .group {
+        background-color: #fff;
+        border-radius: 20px;
+        -webkit-box-shadow: 0px 0px 11px -1px #00000050;
+        box-shadow: 0px 0px 11px -1px #00000050;
+        display: none;
+    }
+
+    .open {
+        display: block;
+        padding: 25px;
+    }
+
+    .col-md-8 { width: 100%; }
+
+    .introduction { margin-bottom: 20px; }
+
+    ul {
+        list-style: none;
+        margin-bottom: 0;
+    }
+
+    .introduction ul { margin-top: 20px; }
+
+    .introduction ul li { margin-bottom: 10px; }
+
+    .introduction ul li a {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        color: #777;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .introduction a:hover { font-weight: bold; }
+
+    .fas-box .fas {
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+    }
+
+    .introduction .title {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .introduction .title .fas {
+        font-size: 20px;
+        color: #2d90c5;
+    }
+
+    .fas-box {
+        display: inline-block;
+        position: relative;
+        width: 40px;
+        height: 40px;
+        background-color: #2d90c5;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .menu {
+        margin-bottom: 20px;
+        margin-top: 40px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+    }
+
+    .menu li[data-menu] {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        padding: 10px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+        -webkit-box-shadow: 0px 0px 10px -3px #0009;
+            box-shadow: 0px 0px 10px -3px #0009;
+    }
+
+    .menu li[data-menu] p {
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #777;
+        padding-left: 10px;
+    }
+
+    .menu li[data-menu] .fas { font-size: 20px; }
+
+    .box-config {
+        padding: 20px;
+        border-radius: 30px;
+        position: relative;
+        margin-bottom: 20px;
+        box-shadow: 1px 1px 7px -1px #0005;
+        background-color: #f1f1f1;
+    }
+
+    .box-config h4 {
+        font-weight: bold;
+        margin: 0;
+    }
+    .box-config-flex { margin-top: 15px; }
+
+    .box-config-flex input {
+        width: 95%;
+        margin-right: 15px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        
+    }
+
+    .box-config-half { width: 50%; }
+
+    .margin-title { margin-top: 15px!important; }
+
+    .box-config-flex p {
+        margin: 0;
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    .box-config-layout {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+    }
+
+    .box-config-flex input[type="checkbox"] { display: none; }
+
+    .checkbox-label {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        border: 2px solid #2d90c5;
+        margin-bottom: -6px;
+        margin-left: 5px;
+        transition: 0.3s;
+        position: relative;
+    }
+
+    .checkbox-label .check {
+        opacity: 0;
+        transition: 0.3s;
+    }
+
+    .box-config-flex input[type="checkbox"]:checked + .checkbox-label .check {
+        opacity: 1;
+    }
+
+    .check {
+        position: absolute;
+        top: 50%;
+        left: 46%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+    }
+
+    .box-config-flex input[type="checkbox"]:checked + .checkbox-label {
+        border: 2px solid #01b77c;
+        background-color: #01b77c;
+        position: relative;
+        border-radius: 50%;
+    }
+
+    .color-brand {
+        padding: 20px;
+        border-radius: 20px;
+        margin-right: 10px;
+        margin-left: 10px;
+        background-color: #f5f5f5;
+        box-shadow: 0px 0px 7px -2px #00000040;
+    }
+
+    i.fab {
+        font-size: 18px;
+        color: #333;
+        margin-right: 5px;
+    }
+
+    .remove-button {
+        border: none;
+        background-color: #800000;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+</style>
+
+<fieldset class="all-content">
+    <div class="introduction">
+        <h1 class="title"><i class="fas fa-paint-brush"></i> Estilize seu tema</h1>
+        <ul>
+            <li>
+                <a href="https://superteia.com.br/#contato" target="_blank">
+                    <div class="fas-box">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    Central de ajuda
+                </a>
+            </li>
+            <li>
+                <a href="http://tematray.web281.uni5.net/doc-temas/stEsportes/" target="_blank">
+                    <div class="fas-box">
+                        <i class="fas fa-file"></i>
+                    </div>
+                    Documentação do tema
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <ul class="menu">
+            <li data-menu="colorLayout">
+                <div class="fas-box">
+                    <i class="fas fa-fill-drip"></i>
+                </div>
+                <p>Cores do<br> Layout</p>
+            </li>
+            <li data-menu="configRegua">
+                <div class="fas-box">
+                    <i class="fas fa-ruler-horizontal"></i>
+                </div>
+                <p>Banner<br> Régua</p>
+            </li>
+            <li data-menu="configMarcas">
+                <div class="fas-box">
+                    <i class="fas fa-copyright"></i>
+                </div>
+                <p>Marcas</p>
+            </li>
+            <li data-menu="configVitrine">
+                <div class="fas-box">
+                    <i class="fas fa-tablet-alt"></i>
+                </div>
+                <p>Configuração <br>Vitrines</p>
+            </li>
+            <li data-menu="configSociais">
+                <div class="fas-box">
+                    <i class="fas fa-share-alt"></i>
+                </div>
+                <p>Redes<br> Sociais</p>
+            </li>
+        </ul>
+        <div class="group open" id="colorLayout">
+            <h3>Cores e layout</h3>
+            <p>Valores em Hexadecimal, exemplo: #333333 ou</p>
+            <p style="margin-bottom: 10px;">Use o <a href="https://htmlcolors.com/google-color-picker" style="font-weight: bold;" target="_blank">Google Color Picker</a> para colorir seu tema.</p>
+
+            <!-- MINI HEADER -->
+            <div class="box-config">
+                <h4>Cabeçalho de Informação</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="miniHeaderBg" name="miniHeaderBg" placeholder="Ex.: #333333">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textMiniHeader" name="textMiniHeader" placeholder="Ex.: #ffffff">
+                    </div>
+                </div>
+            </div>
+
+            <!-- HEADER -->
+            <div class="box-config">
+                <h4>Cabeçalho</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="menuHeader" name="menuHeader" placeholder="Ex.: #ffffff">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textHeader" name="textHeader" placeholder="Ex.: #333333">
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Carrinho: </p>
+                        <input type="text" id="cartBg" name="cartBg" placeholder="Ex.: #333333">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Texto do Carrinho: </p>
+                        <input type="text" id="textoCarrinho" name="textoCarrinho" placeholder="Ex.: #ffffff">
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p style="margin-bottom: 5px;">Logo: </p>
+                        <input type="file" id="logoHeader" name="logoHeader" class="input-file">
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p style="margin-bottom: 5px;">Logo Mobile: </p>
+                        <input type="file" id="logoHeaderMobile" name="logoHeaderMobile" class="input-file">
+                    </div>
+                </div>
+            </div>
+
+            <!-- MENU -->
+            <div class="box-config">
+                <h4>Menu</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="menuBg" name="menuBg" placeholder="Ex.: #333333">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textMenu" name="textMenu" placeholder="Ex.: #ffffff">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPOT PRODUTOS -->
+            <div class="box-config">
+                <h4>Spot Produtos</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgProduct" name="bgProduct" placeholder="Ex.: #f5f5f5">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor da Borda: </p>
+                        <input type="text" id="borderProduct" name="borderProduct" placeholder="Ex.: #eeeeee">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SELOS -->
+            <div class="box-config">
+                <h4>Selo Destaque</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgDestaque" name="bgDestaque" placeholder="Ex.: #333333">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textDestaque" name="textDestaque" placeholder="Ex.: #ffffff">
+                    </div>
+                </div>
+                
+                <h4 class="margin-title">Selo Lançamento</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgLancamento" name="bgLancamento" placeholder="Ex.: #333333">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textLancamento" name="textLancamento" placeholder="Ex.: #ffffff">
+                    </div>
+                </div>
+
+                <h4 class="margin-title">Selo Frete Grátis</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgFreteGratis" name="bgFreteGratis" placeholder="Ex.: #333333">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textFreteGratis" name="textFreteGratis" placeholder="Ex.: #ffffff">
+                    </div>
+                </div>
+
+                <h4 class="margin-title">Selo Promoção</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgSeloPromocao" name="bgSeloPromocao" placeholder="Ex.: #333333">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textSeloPromocao" name="textSeloPromocao" placeholder="Ex.: #ffffff">
+                    </div>
+                </div>
+
+                <!-- <h4 class="margin-title">Selo Adicional</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgAdicional" name="bgAdicional" placeholder="Ex.: #333333">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textAdicional" name="textAdicional" placeholder="Ex.: #ffffff">
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- BOTÕES -->
+            <div class="box-config">
+                <h4>Cor Botões</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgBotao" name="bgBotao" placeholder="Ex.: #000000">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textBotao" name="textBotao" placeholder="Ex.: #ffffff">
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOTÍCIAS -->
+            <div class="box-config">
+                <h4>Notícias</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgNews" name="bgNews" placeholder="Ex.: #ffffff">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Título: </p>
+                        <input type="text" id="titleNews" name="titleNews" placeholder="Ex.: #000000">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textNews" name="textNews" placeholder="Ex.: #555555">
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEPOIMENTOS -->
+            <div class="box-config">
+                <h4>Depoimentos</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgDepoimentos" name="bgDepoimentos" placeholder="Ex.: #ffffff">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Título: </p>
+                        <input type="text" id="titleDepoimentos" name="titleDepoimentos" placeholder="Ex.: #000000">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textDepoimentos" name="textDepoimentos" placeholder="Ex.: #000000">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NEWSLETTER -->
+            <div class="box-config">
+                <h4>Newsletter</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgNewsletter" name="bgNewsletter" placeholder="Ex.: #333333">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Título: </p>
+                        <input type="text" id="titleNewsletter" name="titleNewsletter" placeholder="Ex.: #ffffff">
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Botão: </p>
+                        <input type="text" id="btnNewsletter" name="btnNewsletter" placeholder="Ex.: #ffffff">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Texto do Botão: </p>
+                        <input type="text" id="btnTextNewsletter" name="btnTextNewsletter" placeholder="Ex.: #ffffff">
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="box-config">
+                <h4>Footer</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgFooter" name="bgFooter" placeholder="Ex.: #ffffff">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textFooter" name="textFooter" placeholder="Ex.: #333333">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor dos Ícones: </p>
+                        <input type="text" id="iconFooter" name="iconFooter" placeholder="Ex.: #333333">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="group" id="configRegua">
+            <!-- RÉGUA -->
+            <h3>Configuração da Régua</h3>
+            <p>Dimensões do ícone: 45x45 pixles.</p>
+            <p>Valores em Hexadecimal, exemplo: #333333 ou</p>
+            <p style="margin-bottom: 10px;">Use o <a href="https://htmlcolors.com/google-color-picker" style="font-weight: bold;" target="_blank">Google Color Picker</a> para colorir seu tema.</p>
+            <div class="box-config">
+                <h4>Ativar/Desativar Régua</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Click para ativar a Régua: </label>
+                        <input type="checkbox" id="ativarRegua" name="ativarRegua" value="true">
+                        <label for="ativarRegua" class="checkbox-label">
+                            <i class="fas fa-check check"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="box-config">
+                <h4>Cor da Régua</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor de Fundo: </p>
+                        <input type="text" id="bgRegua" name="bgRegua" placeholder="Ex.: #f5f5f5">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Título: </p>
+                        <input type="text" id="titleRegua" name="titleRegua" placeholder="Ex.: #333333">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Cor do Texto: </p>
+                        <input type="text" id="textRegua" name="textRegua" placeholder="Ex.: #555555">
+                    </div>
+                </div>
+            </div>
+            <div class="box-config">
+                <h4>Primeiro ícone</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Ícone Régua: </p>
+                        <input type="file" id="iconReguaUm" name="iconReguaUm" class="input-file">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Título Régua: </p>
+                        <input type="text" id="titleReguaUm" name="titleReguaUm" placeholder="Ex.: Envio para todo o Brasil">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Texto Régua: </p>
+                        <input type="text" id="textReguaUm" name="textReguaUm" placeholder="Ex.: com comodidade e segurança.">
+                    </div>
+                </div>
+            </div>
+            <div class="box-config">
+                <h4>Segundo ícone</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Ícone Régua: </p>
+                        <input type="file" id="iconReguaDois" name="iconReguaDois" class="input-file">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Título Régua: </p>
+                        <input type="text" id="titleReguaDois" name="titleReguaDois" placeholder="Ex.: Parcele suas compras">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Texto Régua: </p>
+                        <input type="text" id="textReguaDois" name="textReguaDois" placeholder="Ex.: em até 12x">
+                    </div>
+                </div>
+            </div>
+            <div class="box-config">
+                <h4>Terceiro ícone</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Ícone Régua: </p>
+                        <input type="file" id="iconReguaTres" name="iconReguaTres" class="input-file">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Título Régua: </p>
+                        <input type="text" id="titleReguaTres" name="titleReguaTres" placeholder="Ex.: Desconto no boleto">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Texto Régua: </p>
+                        <input type="text" id="textReguaTres" name="textReguaTres" placeholder="Ex.: com segurança">
+                    </div>
+                </div>
+            </div>
+            <div class="box-config">
+                <h4>Quarto ícone</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <p>Ícone Régua: </p>
+                        <input type="file" id="iconReguaQuatro" name="iconReguaQuatro" class="input-file">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Título Régua: </p>
+                        <input type="text" id="titleReguaQuatro" name="titleReguaQuatro" placeholder="Ex.: Frete Grátis">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <p>Texto Régua: </p>
+                        <input type="text" id="textReguaQuatro" name="textReguaQuatro" placeholder="Ex.: acima de R$ 200,00">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="group" id="configMarcas">
+            <!-- MARCAS -->
+            <h3>Configuração da Marcas</h3>
+            <p>Dimensões da Marca: 180x90 pixles.</p>
+            <div class="box-config">
+                <h4>Ativar/Desativar Régua</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Click para ativar as Marcas: </label>
+                        <input type="checkbox" id="ativarMarca" name="ativarMarca" value="true">
+                        <label for="ativarMarca" class="checkbox-label">
+                            <i class="fas fa-check check"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="box-config">
+                <div class="box-config-layout">
+                    <div class="box-config-flex color-brand box-config-half">
+                        <p>Marca 1: </p>
+                        <input type="file" id="marca1" name="marca1" class="input-file">
+                        <p>Link da Marca</p>
+                        <input type="text" id="linkMarca1" name="linkMarca1" placeholder="Ex.: https://www.UrlDaMarca.com.br">
+                        <p>Nome da Marca</p>
+                        <input type="text" id="titleMarca1" name="titleMarca1" placeholder="Ex.: Nome da Marca">
+                        <button class="remove-button" onclick="$('#marca1').val(''); $('[data-target=#myModalmarca1]').remove()">Remover</button>
+                    </div>
+                    <div class="box-config-flex color-brand box-config-half">
+                        <p>Marca 2: </p>
+                        <input type="file" id="marca2" name="marca2" class="input-file">
+                        <p>Link da Marca</p>
+                        <input type="text" id="linkMarca2" name="linkMarca2" placeholder="Ex.: https://www.UrlDaMarca.com.br">
+                        <p>Nome da Marca</p>
+                        <input type="text" id="titleMarca2" name="titleMarca2" placeholder="Ex.: Nome da Marca">
+                        <button class="remove-button" onclick="$('#marca2').val(''); $('[data-target=#myModalmarca2]').remove()">Remover</button>
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex color-brand box-config-half">
+                        <p>Marca 3: </p>
+                        <input type="file" id="marca3" name="marca3" class="input-file">
+                        <p>Link da Marca</p>
+                        <input type="text" id="linkMarca3" name="linkMarca3" placeholder="Ex.: https://www.UrlDaMarca.com.br">
+                        <p>Nome da Marca</p>
+                        <input type="text" id="titleMarca3" name="titleMarca3" placeholder="Ex.: Nome da Marca">
+                        <button class="remove-button" onclick="$('#marca3').val(''); $('[data-target=#myModalmarca3]').remove()">Remover</button>
+                    </div>
+                    <div class="box-config-flex color-brand box-config-half">
+                        <p>Marca 4: </p>
+                        <input type="file" id="marca4" name="marca4" class="input-file">
+                        <p>Link da Marca</p>
+                        <input type="text" id="linkMarca4" name="linkMarca4" placeholder="Ex.: https://www.UrlDaMarca.com.br">
+                        <p>Nome da Marca</p>
+                        <input type="text" id="titleMarca4" name="titleMarca4" placeholder="Ex.: Nome da Marca">
+                        <button class="remove-button" onclick="$('#marca4').val(''); $('[data-target=#myModalmarca4]').remove()">Remover</button>
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex color-brand box-config-half">
+                        <p>Marca 5: </p>
+                        <input type="file" id="marca5" name="marca5" class="input-file">
+                        <p>Link da Marca</p>
+                        <input type="text" id="linkMarca5" name="linkMarca5" placeholder="Ex.: https://www.UrlDaMarca.com.br">
+                        <p>Nome da Marca</p>
+                        <input type="text" id="titleMarca5" name="titleMarca5" placeholder="Ex.: Nome da Marca">
+                        <button class="remove-button" onclick="$('#marca5').val(''); $('[data-target=#myModalmarca5]').remove()">Remover</button>
+                    </div>
+                    <div class="box-config-flex color-brand box-config-half">
+                        <p>Marca 6: </p>
+                        <input type="file" id="marca6" name="marca6" class="input-file">
+                        <p>Link da Marca</p>
+                        <input type="text" id="linkMarca6" name="linkMarca6" placeholder="Ex.: https://www.UrlDaMarca.com.br">
+                        <p>Nome da Marca</p>
+                        <input type="text" id="titleMarca6" name="titleMarca6" placeholder="Ex.: Nome da Marca">
+                        <button class="remove-button" onclick="$('#marca6').val(''); $('[data-target=#myModalmarca6]').remove()">Remover</button>
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex color-brand box-config-half">
+                        <p>Marca 7: </p>
+                        <input type="file" id="marca7" name="marca7" class="input-file">
+                        <p>Link da Marca</p>
+                        <input type="text" id="linkMarca7" name="linkMarca7" placeholder="Ex.: https://www.UrlDaMarca.com.br">
+                        <p>Nome da Marca</p>
+                        <input type="text" id="titleMarca7" name="titleMarca7" placeholder="Ex.: Nome da Marca">
+                        <button class="remove-button" onclick="$('#marca7').val(''); $('[data-target=#myModalmarca7]').remove()">Remover</button>
+                    </div>
+                    <div class="box-config-flex color-brand box-config-half">
+                        <p>Marca 8: </p>
+                        <input type="file" id="marca8" name="marca8" class="input-file">
+                        <p>Link da Marca</p>
+                        <input type="text" id="linkMarca8" name="linkMarca8" placeholder="Ex.: https://www.UrlDaMarca.com.br">
+                        <p>Nome da Marca</p>
+                        <input type="text" id="titleMarca8" name="titleMarca8" placeholder="Ex.: Nome da Marca">
+                        <button class="remove-button" onclick="$('#marca8').val(''); $('[data-target=#myModalmarca8]').remove()">Remover</button>
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex color-brand box-config-half">
+                        <p>Marca 9: </p>
+                        <input type="file" id="marca9" name="marca9" class="input-file">
+                        <p>Link da Marca</p>
+                        <input type="text" id="linkMarca9" name="linkMarca9" placeholder="Ex.: https://www.UrlDaMarca.com.br">
+                        <p>Nome da Marca</p>
+                        <input type="text" id="titleMarca9" name="titleMarca9" placeholder="Ex.: Nome da Marca">
+                        <button class="remove-button" onclick="$('#marca9').val(''); $('[data-target=#myModalmarca9]').remove()">Remover</button>
+                    </div>
+                    <div class="box-config-flex color-brand box-config-half" style="opacity: 0;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="group" id="configVitrine">
+            <!-- CONFIG VITRINE -->
+            <h3>Configuração das Vitrines</h3>
+            <div class="box-config">
+                <h4>Vitrine Destaque</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Ativar vitrine Destaque: </label>
+                        <input type="checkbox" id="ativarDestaque" name="ativarDestaque" value="true">
+                        <label for="ativarDestaque" class="checkbox-label">
+                            <i class="fas fa-check check"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Título Destaque: </label>
+                        <input type="text" id="titleDestaque" name="titleDestaque" placeholder="Ex.: Destaques">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Quantidade de Produtos: </label>
+                        <input type="text" id="qtdeDestaque" name="qtdeDestaque" placeholder="Ex.: 8">
+                    </div>
+                </div>
+            </div>
+            <div class="box-config">
+                <h4>Vitrine Novidades</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Ativar vitrine Novidades: </label>
+                        <input type="checkbox" id="ativarNovidade" name="ativarNovidade" value="true">
+                        <label for="ativarNovidade" class="checkbox-label">
+                            <i class="fas fa-check check"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Título Novidades: </label>
+                        <input type="text" id="titleNovidade" name="titleNovidade" placeholder="Ex.: Novidades">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Quantidade de Produtos: </label>
+                        <input type="text" id="qtdeNovidade" name="qtdeNovidade" placeholder="Ex.: 8">
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="box-config">
+                <h4>Vitrine Frete Grátis</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Ativar vitrine Frete Grátis: </label>
+                        <input type="checkbox" id="ativarFreteGratis" name="ativarFreteGratis" value="true">
+                        <label for="ativarFreteGratis" class="checkbox-label">
+                            <i class="fas fa-check check"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Título Frete Grátis: </label>
+                        <input type="text" id="titleFreteGratis" name="titleFreteGratis" placeholder="Ex.: Frete Grátis">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Quantidade de Produtos: </label>
+                        <input type="text" id="qtdeFreteGratis" name="qtdeFreteGratis" placeholder="Ex.: 8">
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="box-config">
+                <h4>Vitrine de Categoria</h4>
+                <p style="margin: 0; margin-top: 10px;">Nessa Vitrine você poderá montar um carrossel de uma categoria específica.</p>
+                <p>Basta configurar o <strong>ID da categoria</strong>.</p>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Ativar vitrine Categoria: </label>
+                        <input type="checkbox" id="ativarVitrineCategoria" name="ativarVitrineCategoria" value="true">
+                        <label for="ativarVitrineCategoria" class="checkbox-label">
+                            <i class="fas fa-check check"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">ID da Categoria: </label>
+                        <input type="text" id="idCategoria" name="idCategoria" placeholder="Ex.: 25">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Título Categoria: </label>
+                        <input type="text" id="titleCategoria" name="titleCategoria" placeholder="Ex.: Ferramentas">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Quantidade de Produtos: </label>
+                        <input type="text" id="qtdeCategoria" name="qtdeCategoria" placeholder="Ex.: 8">
+                    </div>
+                </div>
+            </div> -->
+            <div class="box-config">
+                <h4>Vitrine de Promoção</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Ativar vitrine Promoção: </label>
+                        <input type="checkbox" id="ativarVitrinePromo" name="ativarVitrinePromo" value="true">
+                        <label for="ativarVitrinePromo" class="checkbox-label">
+                            <i class="fas fa-check check"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Título Promoção: </label>
+                        <input type="text" id="titlePromocao" name="titlePromocao" placeholder="Ex.: Nossas Promoções">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;">Quantidade de Produtos: </label>
+                        <input type="text" id="qtdePromocao" name="qtdePromocao" placeholder="Ex.: 8">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="group" id="configSociais">
+            <h3>Configuração das Redes Sociais</h3>
+            <div class="box-config">
+                <h4>Redes Sociais</h4>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;"><i class="fab fa-facebook-square"></i> Link Facebook: </label>
+                        <input type="text" id="linkFacebook" name="linkFacebook" placeholder="Ex.: https://www.facebook.com/">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;"><i class="fab fa-twitter-square"></i> Link Twitter: </label>
+                        <input type="text" id="linkTwitter" name="linkTwitter" placeholder="Ex.: https://twitter.com/">
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;"><i class="fab fa-pinterest"></i> Link Pinterest: </label>
+                        <input type="text" id="linkPinterest" name="linkPinterest" placeholder="Ex.: https://br.pinterest.com/">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;"><i class="fab fa-linkedin"></i> Link Linkedin: </label>
+                        <input type="text" id="linkLinkedin" name="linkLinkedin" placeholder="Ex.: https://br.linkedin.com/">
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;"><i class="fab fa-youtube"></i> Link do Canal: </label>
+                        <input type="text" id="linkYoutube" name="linkYoutube" placeholder="Ex.: https://www.youtube.com/">
+                    </div>
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;"><i class="fab fa-instagram"></i> Link Instagram: </label>
+                        <input type="text" id="linkInstagram" name="linkInstagram" placeholder="Ex.: https://www.instagram.com/">
+                    </div>
+                </div>
+                <div class="box-config-layout">
+                    <div class="box-config-flex box-config-half">
+                        <label style="font-weight: bold;"><i class="fab fa-whatsapp"></i> Número Whatsapp: </label>
+                        <input type="text" id="numWhatsapp" name="numWhatsapp" class="inp-phone" placeholder="(11) 91234-1234">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<script src="https://kit.fontawesome.com/a8b71ce8bc.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js"></script>
+<script>
+    (function(){
+        setTimeout(function(){
+            $('.inp-phone').inputmask({
+                mask: ['(99) 9999-9999', '(99) 99999-9999'],
+                showMaskOnHover: false,
+                clearMaskOnLostFocus: true,
+            });
+        }, 1000)
+
+        $('.ls-no-padding-left .row')[1].childNodes[3].remove();
+    })();
+
+    (function(){
+        btnMenu = document.querySelectorAll('.menu li[data-menu]')
+        btnMenu.forEach(element => {
+            element.addEventListener('click', function(){
+                var group = document.querySelectorAll('.group');
+                group.forEach(el => {
+                    el.classList.remove('open');
+                });
+
+                document.querySelector('#'+this.dataset.menu).classList.add('open');
+            })
+        });
+    })();
+
+    (function(){
+        var getName = document.querySelectorAll('.input-file');
+
+        getName.forEach(element => {
+            var hiddenElement = document.querySelector('input[type=hidden]#' + element.getAttribute('name'));
+            console.log(hiddenElement)
+            if(hiddenElement.value == "") {
+                var imageElement = document.querySelector('[data-target="#myModal' + element.getAttribute('name') + '"] .img-thumbnail');
+                imageElement.style.display = "none"
+            }
+        });
+    })();
+</script>

@@ -1,0 +1,184 @@
+<div class="container">
+    {% if banner.title %}
+    <div class="banner banner-title ">
+        {{ banner.title }}
+    </div>
+    {% endif %} {% for discount in ProgressiveDiscounts %} {% if discount.banner %}
+    <img src="{{ discount.banner }}" alt="{{discount.name}}" /> {% endif %} {% endfor %}
+    <section id="product-container" class="produto-wrapper product-detail" itemscope itemtype="http://schema.org/Product">
+        {% element 'snippets/schema-product' %} {% element 'snippets/breadcrumb' { "class": 'breadcrumb'} %}
+        <div class="flex-content-product">
+            <div class="product-colum-left">
+                {% if product.images %}
+                <!--<div id="visualBlock" class="product-gallery {{ product.images|length  <= 1 and not product.video ? 'hide-carousel' }}">-->
+                <!--    {{ productHelper.gallery() }}-->
+                <!--</div>-->
+                {% set images = product.images %}
+                <div class="zoom-hover">
+                    <img class="main-photo-content" src="{{ images[0].full }}" alt="">
+                </div>
+                <div class="photo-carrossel">
+                    {% for photos in images %}
+                    <img class="change-photo" data-full="{{ photos.full }}" src="{{ photos.large }}"> {% endfor %}
+                </div>
+
+                {% else %}
+                <div class="product-gallery no-image">
+                    <img src="{{ asset('img/no-image.svg') }}" alt="Nenhuma imagem foi cadastrada">
+                </div>
+                {% endif %} {% if settings.social_position == 0 %}
+                <div class="product-social sidepicture">
+                    {{ productHelper.social() }}
+                </div>
+                {% endif %}
+            </div>
+            <div class="product-colum-right">
+                {% if productHelper.banner() %}{{ productHelper.banner() }}{% endif %}
+                <div>
+                    <div class="flex-stamps">
+                        {% if product.featured %}
+                        <span class="stamps stamps-featured">Destaque</span> {% endif %} {% if product.new %}
+                        <span class="stamps stamps-new">Lançamento</span> {% endif %} {% if product.free_shipping %}
+                        <span class="stamps stamps-free_shipping">Frete Grátis</span> {% endif %} {% if product.additional_button %}
+                        <span class="stamps stamps-free_add-button">Selo Adicional</span> {% endif %}
+                    </div>
+                    <h1 class="product-name" itemprop="name">{{ product.name }}</h1>
+                    <p class="description-small">{{ product.description_small }}</p>
+                </div>
+                <input type="hidden" class="hidden-id-product" name="custId" value="{{ product.id }}">{% element 'product/rating' %} {% for discount in ProgressiveDiscounts %} {% if discount.tag %}
+                <div class="product-discount-recursive-tag">{{discount.tag}}</div>
+                <div class="product-discount-recursive-desc">{{discount.description}}</div>
+                {% endif %} {% endfor %}
+
+                <p class="product-details">
+                    {% if settings.show_product_stock %}
+                    <span>Estoque: <b>{{ product.stock }}</b></span> {% endif %} {{ productHelper.details() }} {{ productHelper.icons() }}
+                </p>
+                {{ productHelper.bonus() }}
+                <form id="form_comprar" method="post" data-app="product.buy-form" action="{{ links.cart_add ~ product.id }}">
+                    {% if settings.cache_infopreco %}
+                    <div data-module="pricing" data-snippet="snippets/pricing" data-product-id="{{ product.id }}">
+                        <div class="pricing">
+                            Carregando...
+                        </div>
+                    </div>
+                    {% else %} {{ productHelper.pricing() }} {% endif %} {% if product.additional_message %}
+                    <div class="additional-message">
+                        {{ product.additional_message }}
+                    </div>
+                    {% endif %} {%if product.payment %}
+                    <!-- <section class="product__payment" modal-open>
+                        <i class="fas fa-credit-card"></i>
+                        <a title="Clique para abrir o modal de forma de pagamentos" href="#Aba2">
+                            Ver mais formas de pagamento
+                        </a>
+                    </section> -->
+                    {% endif %} 
+                    {{ product.additional_information }} 
+                    {{ productHelper.variants() }} 
+                    {{ productHelper.gifts() }} 
+                    {{ productHelper.kit() }}
+                    {{ productHelper.shipping() }} 
+                    {{ productHelper.form() }} 
+                    {% if not product.upon_request and product.available %} 
+                        {{ productHelper.wishlist() }} 
+                    {% endif %}
+                </form>
+
+                {% if settings.social_position == 1 %}
+                <div class="product-social">
+                    {{ productHelper.social() }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    {% if product.video %}
+        <section class="video-product">
+            <h1 class="showcase__title">Vídeo</h1>
+            <iframe class="responsive-iframe" src="{{ product.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+    {% endif %}
+    <section id="ProdBlock" class="product-tabs">
+            <a name="formaPagto"></a>
+            <div id="ProdAbas" class="abasProduto tab-panel">
+                <ul class="tabs-content">
+                    {% for key, tab in productTabs %}
+                      {% if tab.container_id %}
+                      <li id="{{ tab.id }}" {% if key=='description' %}class="aberta" {% endif %}>
+                        <a href="#" data-tab-container-id="{{ tab.container_id }}" data-tab-url="{{ tab.url }}">{{ tab.description }}</a>
+                      </li>
+                      {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        
+            <div id="descricao" class="prodBox">
+                <div class="board">
+                    <div class="board_htm description">
+                        {{ product.description ? product.description : product.description_small }}
+                    </div>
+                </div>
+            </div>
+        
+            <div id="itensInclusos" class="prodBox">
+                <div class="board">
+                    {{ product.included_items }}
+                </div>
+            </div>
+        
+            <div id="coments" class="prodBox">
+                <div class="board">
+                    {% element 'product/comments' %}
+                </div>
+            </div>
+        
+            <div id="caracteristicas" class="prodBox">
+                <div class='board'>
+                    {% element 'product/properties' %}
+                </div>
+            </div>
+        
+            {{ productTabs.custom.content }}
+            {{ productTabs.downloads.content }}
+        
+            <div id="garantia" class="prodBox">
+                <img class="loader" src="{{ tray.paths.system_image }}/big-loading.svg"  />
+            </div>
+            <div data-app="product.payment-methods" id="formasPagto" class="prodBox"  ></div>
+        </section>
+    {% if productHelper.bundle() %}
+    <section class="product-cross-sell">
+        <h3>{{ Translation('compre_junto') }}</h3>
+        {{ productHelper.bundle() }}
+    </section>
+    {% endif %} {% if product.related_products %}
+    <div id="prognoos_lsi"></div>
+    <section class="products-related">
+        <h3 class="related-title">Aproveite e leve também</h3>
+        <div class="control">
+            <div class="related-content">
+                {% for related in product.related_products %}
+                <div class="related-item">
+                    {% element 'snippets/product' {"product": related} %}
+                </div>
+                {% endfor %}
+            </div>
+            <button aria-label="Previous" class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+            <button aria-label="Next" class="slider-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+    {% endif %}
+
+    <div id="prognoos_ib"></div>
+    {% if settings.history_position == 1 %}
+    <section class="products-visited col-sm-12">
+        <h3 class="related-title">{{ Translation('produtos_visitados') }}</h3>
+        {% element 'snippets/history' { 'store.id': store.id, 'pages.current': pages.current, 'category.id': category.id } %}
+    </section>
+    {% endif %} {% if banner.bottom %}
+    <div class="banner banner-bottom ">
+        {{ banner.bottom }}
+    </div>
+    {% endif %}
+</div>

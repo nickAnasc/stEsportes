@@ -1,0 +1,121 @@
+<!-- featured
+new
+free_shipping
+promotion
+top_seller -->
+ 
+<!-- {% set showAvailable = settings.show_available_products ? 'available' %} -->
+
+<div id="prognoos_popv1"></div>
+
+<!-- BANNER PRINCIPAL HOME -->
+{% element 'snippets/banner-home' %}
+<!-- FIM BANNER PRINCIPAL HOME -->
+
+<!-- RÉGUA -->
+{% element 'snippets/regua' %}
+<!-- FIM RÉGUA -->
+
+<!-- CARROSSEL DE MARCAS -->
+<section class="home__section brand container-fluid">
+    {% element 'snippets/brand' %}
+</section>
+<!-- FIM CARROSSEL DE MARCAS -->
+
+<!--CARROSSEL DESTAQUE -->
+<div class="destaque">
+    {% if settings.ativarDestaque %}
+        {% set productFeatured = Products({
+            'filter': ['available', "featured"],
+            'order': 'rand',
+            'limit': settings.qtdeDestaque ? settings.qtdeDestaque : 4
+        }) %}
+
+        {% element 'showcase' {
+            "products": productFeatured,
+            "showcaseTitle": settings.titleDestaque ? settings.titleDestaque : "Destaque"
+        } %}
+    {% endif %}
+</div>
+<!--FIM CARROSSEL DESTAQUE -->
+
+<!-- BANNER TRIPLO -->
+{% element 'snippets/tripleBanner' %}
+<!-- FIM BANNER TRIPLO -->
+
+<!--CARROSSEL NOVIDADES -->
+<div class="novidades">
+    {% if settings.ativarNovidade %}
+        {% set productNew = Products({
+            'filter': ['available', "new"],
+            'order': 'rand',
+            'limit': settings.qtdeNovidade ? settings.qtdeNovidade : 4
+        }) %}
+
+        {% element 'showcase' {
+            "products": productNew,
+            "showcaseTitle": settings.titleNovidade ? settings.titleNovidade : "Novidades"
+        } %}
+    {% endif %}
+</div>
+<!--FIM CARROSSEL NOVIDADES -->
+
+<!--CARROSSEL FRETE GRÁTIS -->
+<div class="frete-gratis">
+    {% if settings.ativarFreteGratis %}
+        {% set productFreteGratis = Products({
+            'filter': ['available', "free_shipping"],
+            'order': 'rand',
+            'limit': settings.qtdeFreteGratis ? settings.qtdeFreteGratis : 4
+        }) %}
+
+        {% element 'showcase' {
+            "products": productFreteGratis,
+            "showcaseTitle": settings.titleFreteGratis ? settings.titleFreteGratis : "Frete Grátis"
+        } %}
+    {% endif %}
+</div>
+<!--FIM CARROSSEL NOVIDADES -->
+
+<!-- BANNER TRIPLO BAIXO-->
+{% element 'snippets/bannerTriploBaixo' %}
+<!-- FIM BANNER TRIPLO BAIXO -->
+
+<!--CARROSSEL PROMOÇÕES -->
+<div class="promocoes">
+    {% if settings.ativarVitrinePromo %}
+        {% set productPromotion = Products({
+            'filter': ['available', "promotion"],
+            'order': 'rand',
+            'limit': settings.qtdePromocao ? settings.qtdePromocao : 4
+        }) %}
+
+        {% element 'showcase' {
+            "products": productPromotion,
+            "showcaseTitle": settings.titlePromocao ? settings.titlePromocao : "Promoção"
+        } %}
+    {% endif %}
+</div>
+<!--FIM CARROSSEL NOVIDADES -->
+
+<!-- NOTÍCIAS -->
+<section class="notices container">
+    <h2 class="notices__tittle">Notícias e Dicas</h2>
+    <div class="noticias-content">
+    </div>
+    <div class="see-more-news">
+        <a href="/noticias">Veja mais Notícias</a> 
+    </div>
+</section>
+<!-- FIM NOTÍCIAS -->
+
+<!-- DEPOIMENTOS -->
+<section class="depositions container">
+    <h3 class="depositions__title">Depoimentos</h3>
+    <div class="controls">
+        {% element 'CustomerReview.reviews' %}
+        <button aria-label="Previous" class="dep-prev"><i class="fas fa-chevron-left"></i></button>
+        <button aria-label="Next" class="dep-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+<!-- FIM DEPOIMENTOS -->

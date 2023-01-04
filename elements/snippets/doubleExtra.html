@@ -1,0 +1,45 @@
+ {% if ((banners.extra3 and banners.extra3.type == 'image') or (banners.extra4 and banners.extra4.type == 'image')
+ or (banners.extra5 and banners.extra3.type == 'image') or (banners.extra6 and banners.extra4.type == 'image')) %}
+    <section class="banner desktop container">
+        <section class="banner__double desktop">
+            {% if banners.extra3 %}
+                <section class="banner__item banner__item--hover {% if banners.extra3.link %} item-hover {% endif %}">
+                    {% set link = banners.extra3.tracked_link ? banners.extra3.tracked_link : banners.extra3.link %}
+                    <a {% if banners.extra3.link %} href="{{ link }}" {% if banners.extra3.target == '_blank' %} target="_blank" rel="noreferrer noopener" {% endif %} {% endif %}>
+                        <img  src="{{ banners.extra3.src }}">
+                    </a>
+                </section>
+            {% endif %}
+            {% if banners.extra4 %}
+                <section class="banner__item banner__item--hover {% if banners.extra4.link %} item-hover {% endif %}">
+                    {% set link = banners.extra4.tracked_link ? banners.extra4.tracked_link : banners.extra4.link %}
+                    <a {% if banners.extra4.link %} href="{{ link }}" {% if banners.extra4.target == '_blank' %} target="_blank" rel="noreferrer noopener" {% endif %} {% endif %}>
+                        <img  src="{{ banners.extra4.src }}">
+                    </a>
+    
+                </section>
+            {% endif %}
+        </section>
+    </section>
+    <section class="banner mobile container">
+        <section class="banner__double">
+            {% if banners.extra5 %}
+                <section class="banner__item banner__item--hover {% if banners.extra5.link %} {% endif %}">
+                        {% set link = banners.extra5.tracked_link ? banners.extra5.tracked_link : banners.extra5.link %}
+                        <a {% if banners.extra5.link %} href="{{ link }}" {% if banners.extra5.target == '_blank' %} target="_blank" rel="noreferrer noopener" {% endif %} {% endif %}>
+                            <img  src="{{ banners.extra5.src }}">
+                        </a>
+                </section>
+                {% endif %}
+                {% if banners.extra6 %}
+                <section class="banner__item banner__item--hover {% if banners.extra6link %} item-hover {% endif %}">
+                        {% set link = banners.extra6.tracked_link ? banners.extra6.tracked_link : banners.extra6.link %}
+                        <a {% if banners.extra6.link %} href="{{ link }}" {% if banners.extra6.target == '_blank' %} target="_blank" rel="noreferrer noopener" {% endif %} {% endif %}>
+                            <img  src="{{ banners.extra6.src }}">
+                        </a>
+        
+                </section>
+            {% endif %}
+        </section>
+    </section>
+{% endif %}

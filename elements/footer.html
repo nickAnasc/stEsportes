@@ -1,0 +1,74 @@
+{% set checkout = "checkout" in pages.current ? "true" : "false" %}
+<footer class="footer">
+    <div class="container" role="contentinfo">
+        <aside class="footer__institutional">
+            <div class="institucional__container" role="contentinfo">
+                <nav class="flex-institutional institutional__navigation">
+                    <h3>{{ Translation('institucional') }}</h3>
+                    <ul class="navigation__list">
+                        {% for custom in pages.custom %}
+                        <li class="navigation__list-item">
+                            <a href="{{ custom.url }}">{{ custom.name }}</a>
+                        </li>
+                        {% endfor %}
+                        <li class="navigation__list-item">
+                            <a href="{{ links.contact }}" data-tray-tst="fale_conosco">{{ Translation('contato') }}</a>
+                        </li>
+                    </ul>
+                </nav>
+                {% if Translation('ag_atendimento') != '' or Translation('ag_telefone_1') != '' or Translation('ag_telefone_2') != '' or Translation('ag_email_1') != '' or Translation('ag_email_2') != '' %}
+                <section class="flex-institutional institutional__contact">
+                    <h3>{{ Translation('Atendimento') }}</h3>
+                    {% element 'snippets/contact' %}
+                </section>
+                {% endif %}
+                <section class="flex-institutional institutional__social">
+                    <nav class="institutional__navigation">
+                        <h3>Minha Conta</h3>
+                        <ul class="institutional__profile">
+                            <li class="institutional__profile--item">
+                                <a href="{{ links.register }}">Criar Conta</a>
+                            </li>
+                            <li class="institutional__profile--item">
+                                <a href="{{ links.central }}">Minha Conta</a>
+                            </li>
+                            <li class="institutional__profile--item">
+                                <a href="{{ links.orders }}">Meus Pedidos</a>
+                            </li>
+                        </ul>
+                    </nav>                    
+                </section>
+                <section class="flex-institutional institutional__social">
+                    <nav class="institutional__navigation">
+                        <h3>Redes Sociais</h3>
+                    </nav>
+                    {% if settings.linkFacebook or settings.linkTwitter or settings.linkPinterest or settings.linkLinkedin or settings.linkYoutube or settings.linkInstagram %}
+                        {% element 'snippets/social-list' %}
+                    {% endif %}
+                </section>
+            </div>
+            <div class="intutional__payment">
+                <h3>{{ Translation('pagamento') }}</h3>
+                {% element 'snippets/payment-list' %} 
+                {% if (seals.ebit or seals.hackersafe) or settings.enable_seal %}
+                <h3 class="payment__security-title">{{ Translation('seguranca') }}</h3>
+                <ul class="payment__seals">
+                    {% if seals.ebit %}
+                    <li class="payment__seal-ebit payment__pull-left">{{ seals.ebit }}</li>
+                    {% endif %} {% if seals.hackersafe %}
+                    <li>{{ seals.hackersafe }}</li>
+                    {% endif %} {% if settings.enable_seal %}
+                    <li>{{ settings.seal_code }}</li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </aside>
+    </div>
+    {% if Translation('ag_mensagem_rodape') != '' %}
+    {% element 'snippets/address' %}
+    {% endif %}
+    <div class="copy-right">
+        <a href="https://superteia.com.br/" target="_blank"><img src="https://superteia.com.br/images/superteia_logo.png"></a> <p>Agência Superteia - CNPJ: 04.433.842/0001-98 © Todos os direitos reservados.</p>
+    </div>
+</footer>

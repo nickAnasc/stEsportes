@@ -1,0 +1,213 @@
+{% spaceless %}
+<!doctype html>
+<html data-theme="{{ settings.extension_id }}" data-store="{{ store.id }}" class="page-{{ pages.current }}">
+<head>
+    <!-- tray charset -->
+    {{ html.charset() }}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- tray meta tags -->
+    {{ tray.meta }}
+
+    <!-- tray styles -->
+    {{ tray.styles }}
+
+    <!-- theme styles -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
+    <link rel="stylesheet" href="{{ asset('css/theme.css') }}" type="text/css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- tray analytics -->
+    {{ tray.analytics }}
+
+    <!-- google tag manager -->
+    {{ googleTagManager.header(pages.current, tagManagerData) }}
+</head>
+<body>
+    <style>
+        :root {
+            /* MINI HEADER */
+            --miniHeaderBg: {{ settings.miniHeaderBg }}; 
+            --textMiniHeader: {{ settings.textMiniHeader }};
+
+            /* HEADER */
+            --menuHeader: {{ settings.menuHeader }};
+            --textHeader: {{ settings.textHeader }};
+            --cartBg: {{ settings.cartBg }};
+            --textoCarrinho: {{ settings.textoCarrinho }};
+
+            /* MENU */
+            --menuBg: {{ settings.menuBg }};
+            --textMenu: {{ settings.textMenu }};
+
+            /* SPOT PRODUTO */
+            --bgProduct: {{ settings.bgProduct }};
+            --borderProduct: {{ settings.borderProduct }};
+
+            /* SELOS */
+            --bgDestaque: {{ settings.bgDestaque }};
+            --textDestaque: {{ settings.textDestaque }};
+            
+            --bgLancamento: {{ settings.bgLancamento }};
+            --textLancamento: {{ settings.textLancamento }};
+
+            --bgFreteGratis: {{ settings.bgFreteGratis }};
+            --textFreteGratis: {{ settings.textFreteGratis }};
+
+            --bgSeloPromocao: {{ settings.bgSeloPromocao }};
+            --textSeloPromocao: {{ settings.textSeloPromocao }};
+
+            --bgAdicional: {{ settings.bgAdicional }};
+            --textAdicional: {{ settings.textAdicional }};
+
+            /* BOTÃO */
+            --bgBotao: {{ settings.bgBotao }};
+            --textBotao: {{ settings.textBotao }};
+
+            /* NOTÍCIAS */
+            --bgNews: {{ settings.bgNews }};
+            --titleNews: {{ settings.titleNews }};
+            --textNews: {{ settings.textNews }};
+
+            /* DEPOIMENTOS */
+            --bgDepoimentos: {{ settings.bgDepoimentos }};
+            --titleDepoimentos: {{ settings.titleDepoimentos }};
+            --textDepoimentos: {{ settings.textDepoimentos }};
+
+            /* NEWSLETTER */
+            --bgNewsletter: {{ settings.bgNewsletter }};
+            --titleNewsletter: {{ settings.titleNewsletter }};
+            --btnNewsletter: {{ settings.btnNewsletter }};
+            --btnTextNewsletter: {{ settings.btnTextNewsletter }};
+
+            /* FOOTER */
+            --bgFooter: {{ settings.bgFooter }};
+            --textFooter: {{ settings.textFooter }};
+            --iconFooter: {{ settings.iconFooter }};
+
+            /* RÉGUA */
+            --bgRegua: {{ settings.bgRegua }};
+            --titleRegua: {{ settings.titleRegua }};
+            --textRegua: {{ settings.textRegua }};
+
+            /* VITRINE CATEGORIA */
+            --bgCategory: url({{ asset(settings.bgCategoryBanner) }});
+
+
+            --grayscale: #646464;
+            --lightgray: #D3D5DA;
+            --graywhite: #F7F7F7;
+            --gray-smoke: #707070;
+            --yellow: #FFC400;
+            --blue: #3385D9;
+            --darkblue: #0A5797;
+            --Rajdhani: 'AddingtonCF';
+            --Arimo: 'AddingtonCF';
+        }
+    </style>
+    {{ googleTagManager.top(pages.current, tagManagerData) }}
+
+    {% element 'snippets/messages' %}
+
+    {% element 'snippets/menu-mobile' %}
+
+    <div class="application">
+
+        {% element 'header' %}
+
+        <main class="main">
+                {{ content_for_layout }}
+                <section class="page-content container">
+                {% if pages.current in ['catalog', 'search'] %}
+                    {% if settings.history_position == 1 %}
+                        <section class="products-visited col-sm-12">
+                            <h4>{{ Translation('confira_tambem') }}</h4>
+                            <h3 class="related-title">{{ Translation('produtos_visitados') }}</h3>
+                            {% element 'snippets/history' {
+                                'store.id': store.id,
+                                'pages.current': pages.current,
+                                'category.id': category.id
+                            } %}
+                        </section>
+                    {% endif %}
+                {% endif %}
+                </section>
+        </main>
+        {% element 'snippets/newsletter' %}
+        {% element 'footer' %}
+
+        {% if settings.hottags_position == 2 %}
+            <div class="tagcloud">
+                <h4>As palavras</h4>
+                <h3>{{ Translation('tags_mais_buscadas') }}</h3>
+                {% for tag in tags %}
+                  <a href="{{ tag.url }}" style="font-size: {{ tag.font_size }}%">{{ tag.word }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if pages.current in ['catalog', 'search', 'product'] %}
+            {% if settings.history_position == 2 %}
+                <section class="products-visited col-sm-12">
+                    <h4>{{ Translation('confira_tambem') }}</h4>
+                    <h3 class="related-title">{{ Translation('produtos_visitados') }}</h3>
+                    {% element 'snippets/history' {
+                        'store.id': store.id,
+                        'pages.current': pages.current,
+                        'category.id': category.id
+                    } %}
+                </section>
+            {% endif %}
+        {% endif %}
+
+    </div>
+
+    {% element 'snippets/credits' %}
+
+    <!-- tray -->
+    {% element 'snippets/modal' %}
+    {{ googleTagManager.bottom(pages.current, tagManagerData) }}
+    {{ tray.scripts }}
+    {{
+            html.script({
+                '0' : tray.paths.js ~ 'dist/application.min.js?' ~ utils.assets_version,
+                '1' : tray.paths.js ~ 'init.js?' ~ utils.assets_version
+            })
+    }}
+    {% element 'snippets/pageview' %}
+
+    {% if settings.numWhatsapp %}
+        <div class="whatsapp-floating" style="position: fixed; bottom: 10%; right: 5px;">
+            <input type="hidden" value="{{ settings.numWhatsapp }}" class="formatNumber">
+            <a target="_blank" class="link-whats-replace" href="" style="background-color: #46c655;font-size: 35px;padding: 15px 20px;border-radius: 50%;">
+                <i style="font-weight: bold; color: #fff;" class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    {% endif %}
+
+    <!-- theme scripts-->
+    <script src="https://kit.fontawesome.com/a8b71ce8bc.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('js/prodVariation.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/theme.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/noticias.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/gliderInit.js') }}"></script>
+    <script>
+        setTimeout(function(){
+            var formatNumber = document.querySelector('.formatNumber').value.replace(/\(/g,"").replace(/\)/g,"").replace(/\-/g,"").replace(/\ /g,"")
+            document.querySelector('.link-whats-replace').setAttribute('href', 'https://web.whatsapp.com/send?phone=+55'+formatNumber);
+        }, 2000)
+    </script>
+    {% if settings.background_image %}
+    <style>
+        .application{ background-image: url('{{ themePath }}{{ settings.background_image }}'); }
+    </style>
+    {% endif %}
+
+</body>
+</html>
+{% endspaceless %}

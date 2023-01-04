@@ -1,0 +1,55 @@
+<div class="container-fluid bannerRegua" style="{% if settings.ativarRegua %}display:block;{% else %}display:none;{% endif %}">
+    <div class="controls">
+        <div class="scale container">
+            {% if settings.iconReguaUm and settings.titleReguaUm and settings.textReguaUm %}
+            <div class="scale__item">
+                <div class="scale__flex">
+                    <img src="{{ asset(settings.iconReguaUm)}}">
+                    <div>
+                        <h5 class="scale__title">{{ settings.titleReguaUm }}</h5>
+                        <p class="scale__text">{{ settings.textReguaUm }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+    
+            {% if settings.iconReguaDois and settings.titleReguaDois and settings.textReguaDois %}
+            <div class="scale__item">
+                <div class="scale__flex">
+                    <img src="{{ asset(settings.iconReguaDois)}}">
+                    <div>
+                        <h5 class="scale__title">{{ settings.titleReguaDois }}</h5>
+                        <p class="scale__text">{{ settings.textReguaDois }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+    
+            {% if settings.iconReguaTres and settings.titleReguaTres and settings.textReguaTres %}
+            <div class="scale__item">
+                <div class="scale__flex">
+                    <img src="{{ asset(settings.iconReguaTres)}}">
+                    <div>
+                        <h5 class="scale__title">{{ settings.titleReguaTres }}</h5>
+                        <p class="scale__text">{{ settings.textReguaTres }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+    
+            {% if settings.iconReguaQuatro and settings.titleReguaQuatro and settings.textReguaQuatro %}
+            <div class="scale__item">
+                <div class="scale__flex">
+                    <img src="{{ asset(settings.iconReguaQuatro)}}">
+                    <div>
+                        <h5 class="scale__title">{{ settings.titleReguaQuatro }}</h5>
+                        <p class="scale__text">{{ settings.textReguaQuatro }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <button aria-label="Previous" class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+        <button aria-label="Next" class="slider-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</div>

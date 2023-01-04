@@ -1,0 +1,102 @@
+<header class="header">
+    <address class="header__information">
+        <div class="container header__information-flex">
+            <div class="information__email flex-info">
+                <p class="info-phone space-info">
+                    {% if Translation('ag_telefone_1') %}
+                        <a href="https://api.whatsapp.com/send?l=pt&phone=55{{ tellink }}" target="_blank" rel="noopener noreferrer">
+                            {{ Translation('ag_telefone_1') }}
+                        </a>
+                    {% endif %} 
+                    {% if Translation('ag_telefone_2') %}
+                    <i style="margin-left: 10px;" class="fa fa-whatsapp" aria-hidden="true"></i> 
+                    <a href="https://api.whatsapp.com/send?l=pt&phone=55{{ tellink2 }}" target="_blank" rel="noopener noreferrer">
+                        {{ Translation('ag_telefone_2') }}
+                    </a> 
+                    {% endif %}
+                </p>
+                <p class="open-week space-info">Aberto todos os dias da semana</p>
+                <a href="{{ links.central }}" class="space-info pedidos">Meus Pedidos</a>
+            </div>
+            <div class="information__email social flex-info">
+                <p class="info-phone space-info">Acesse nossas redes</p>
+                <ul class="info-social">
+                    {% if settings.linkFacebook %}
+                        <li>
+                            <a href="{{ settings.linkFacebook }}" target="_blank" class="link-social">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if settings.linkTwitter %}
+                        <li>
+                            <a href="{{ settings.linkTwitter }}" target="_blank" class="link-social">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if settings.linkPinterest %}
+                        <li>
+                            <a href="{{ settings.linkPinterest }}" target="_blank" class="link-social">
+                                <i class="fab fa-pinterest"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if settings.linkLinkedin %}
+                        <li>
+                            <a href="{{ settings.linkLinkedin }}" target="_blank" class="link-social">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if settings.linkYoutube %}
+                        <li>
+                            <a href="{{ settings.linkYoutube }}" target="_blank" class="link-social">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if settings.linkInstagram %}
+                        <li>
+                            <a href="{{ settings.linkInstagram }}" target="_blank" class="link-social">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </address>
+    <section class="header__bottom">
+        <section class="container flex-header">
+            <section class="auto_width header__logo">
+                {% if settings.logoHeader or settings.logoHeaderMobile %}
+                    <a href="{{ links.home }}" data-tray-tst="logotipo_loja">
+                        <picture>
+                            <source srcset="{{ asset(settings.logoHeaderMobile) }}" media="(max-width: 991px)">
+                            <img src="{{ asset(settings.logoHeader) }}">
+                        </picture>
+                    </a> 
+                {% else %}
+                    <a href="{{ links.home }}" data-tray-tst="logotipo_loja">{{ Image('logo') }}</a> 
+                {% endif %}
+            </section>
+            <section class="auto_width header__search">
+                {% element 'snippets/search' %}
+            </section>
+            <section class="auto_width header__control">
+                {% element 'snippets/customer' %} 
+                {% element 'snippets/cart' %}
+                <section class="header__mobile wrapper-nav desktop">
+                    <button class="trigger-menu mobile__button">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </section>
+            </section>
+        </section>
+        <section class="search-mobile">
+            {% element 'snippets/search' %}
+        </section>
+    </section>
+    {% element 'snippets/navbar' %}
+</header>

@@ -1,0 +1,20 @@
+ {% if products|length > 0 %}
+    <section class="showcase bg-grid" data-tray-tst="vitrine_home">
+        <div class="container">
+            <h1>{{ showcaseTitle }}</h1>
+            <ul class="showcase-content product-grid">
+            {% for product in products %}
+                {% set ranking = product.ranking %}
+                <li class="showcase-content__item" data-tray-tst="vitrine_produto" itemscope itemtype="https://schema.org/SomeProducts">
+                    {% element 'snippets/product' {"product": product} %}
+                </li>
+                
+                {% if loop.index is divisible by(4) %}
+                    </ul><ul class="showcase-content product-grid">   
+                {% endif %}
+                
+            {% endfor %}
+            </ul>
+        </div>
+    </section>
+{% endif %}

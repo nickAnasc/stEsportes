@@ -1,0 +1,12 @@
+{% if products|length > 0 %}
+    <section class="vitrine-banner" data-tray-tst="vitrine_home">
+        <ul class="showcase-content product-banner" style="width: 100%;">
+        {% for product in products %}
+            {% set ranking = product.ranking %}
+            <li class="showcase-content__item" data-tray-tst="vitrine_produto" itemscope itemtype="https://schema.org/SomeProducts">
+                {% element 'snippets/product' {"product": product} %}
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+{% endif %}

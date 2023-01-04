@@ -1,0 +1,31 @@
+<section class="customer">
+    <section class="customer__login" data-tray-tst="saudacao">
+        {% if customer.logged %}
+            <a class="customer__my-profile mobile" href="{{ links.central }}">Minha Conta</a>
+            <section class="tray-hide customer__welcome d-flex align-center desktop" data-logged-user="true">
+                {{ Translation('bem_vindo_central') }},  
+                <br>
+                <strong class="customer__username" data-customer="name"></strong>
+                <i class="fas fa-chevron-down"></i>
+                <section class="customer__modal align-center justify-center flex-column">
+                    <a class="modal__button" href="{{ links.central }}">Minha conta</a>
+                    <a class="modal__button" href="{{ links.orders }}">Meus Pedidos</a>
+                    <a class="modal__logout" href="{{ links.logout }}">Sair</a>
+                </section>
+            </section>
+        {% else %}
+            <span class="tray-logoff" data-logged-user="false">
+                <div class="desk">
+                    <p>{{ Translation('bem_vindo_central') }},</p>
+                    <a href="{{ links.login }}" data-tray-tst="login" class="{{ utils.is_https ? 'modal-login' }}">{{ Translation('login') }}</a> 
+                    {{ Translation('ou') }} <a href="{{ links.register }}" data-tray-tst="cadastro">{{ Translation('cadastre_se') }}</a>
+                </div>
+                <div class="mobile">
+                    <a href="{{ links.login }}">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </span>
+        {% endif %}
+    </section>
+</section>

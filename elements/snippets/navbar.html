@@ -1,0 +1,72 @@
+{% set loopMais = 5 %}
+<nav class="navbar">
+        <ul class="navbar__list d-flex align-center justify-center container">
+        {% for category in categories %}
+            {% if loop.index <= loopMais %}
+            {% set children = category.children %}
+            <li class="navbar__list--item">
+                <a href="{{ category.link }}">{{ category.name }}</a>
+                {% if children %}
+                <i class="fas fa-chevron-down"></i>
+                    <ul class="navbar__container">
+                        <ul class="navbar__children">
+                            {% for child in children %}
+                                <li class="navbar__children--item">
+                                    <a href="{{ child.link }}">
+                                        {{ child.name }}
+                                    </a>
+                            {% if child.children  %}
+                                {% for child in child.children %}
+                                    <ul class="navbar__grandchild">
+                                        <li class="navbar__grandchild--item">
+                                             <a href="{{ child.link }}">{{ child.name }}</a>
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                            {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        {% set productCategory = Products({ 'filter': ['new', 'available'], 'limit': 1, 'order': {'quantity_sold': 'desc'}, categories: category.id }) %}
+                        {% if productCategory %}
+                            <div class="navbar__product">
+                                {% element 'show-nav' { "products": productCategory } %}
+                            </div>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            </li>
+            {% endif %}
+        {% endfor %}
+        {% if categories|length > loopMais %}
+            <li class="navbar__list--item more-cat">
+                <a href="javascript:;">
+                    <div class="name">Mais categorias <i class="fas fa-chevron-down"></i></div>
+                </a>
+                {% set filterCategory = [] %}
+                <ul class="list-more-cat">
+                    {% for list in categories %}
+                        {% if loop.index > loopMais %}
+                            <li class="item-more-cat">
+                                {% if list.children %}
+                                    <a href="{{ list.link }}">{{ list.name }}</a> <i class="click-drop fas fa-chevron-down"></i>
+                                    <ul class="subMoreCat">
+                                        {% for subList in list.children %}
+                                            <li>
+                                                <a href="{{ subList.link }}">
+                                                    {{ subList.name }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <a href="{{ list.link }}">{{ list.name }}</a>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endif %}
+        </ul>
+</nav>

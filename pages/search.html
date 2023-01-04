@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="catalog-header">
+
+        {% if search.word %}
+            <h2 class="catalog-name">Exibindo resultados para: {{ search.word }}</h2>
+        {% else %}
+            <h2 class="catalog-name">Exibindo todos os produtos</h2>
+        {% endif %}
+        
+        <h2 class="catalog-name">{{ category.name }}</h2>
+        
+        {% if products|length > 0 %}
+        
+            {% if breadcrumb %}
+                {% element 'snippets/breadcrumb' %}
+            {% endif %}
+            
+            <div class="system-filter">
+                {% element 'snippets/filter' {
+                    'brands': category.brands
+                } %}
+            </div>
+        {% endif %}
+    </div>
+    
+    {% if products|length > 0 %}
+    
+        <div class="catalog-content">
+            {% element 'showcase-catalog' {
+                "products": products
+            } %}
+        </div>
+    
+    {% else %}
+    
+        <p>Nenhum produto encontrado nessa categoria.</p>
+    
+    {% endif %}
+
+    <div class="pagination">
+        {% element 'snippets/paginate' %}
+    </div>
+</div>

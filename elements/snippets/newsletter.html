@@ -1,0 +1,15 @@
+<section class="newsletter" data-tray-tst="newsletter_box">
+    <form class="newsletter__form" action="{{ links.newsletter }}&v=js" method="post" name="newsletter" data-tray-tst="newsletter_form">
+        <fieldset class="newletter__fieldset container">
+            <legend class="newsletter__legend">
+                <hgroup>
+                    <h3 class="newsletter__title">Cadastre-se e receba nossas</h3>
+                    <h2 class="newsletter__subtitle">Novidades</h2>
+                </hgroup>
+            </legend>
+                <input id="news-name" name="name" type="text" placeholder="{{ Translation('digitar_nome') }}" required class="newsletter-input">
+                <input id="news-email" name="email" type="email" placeholder="{{ Translation('digitar_email') }}" class="newsletter-input" data-tray-tst="newsletter_email" required>
+                <button class="newsletter__button" data-tray-tst="newsletter__button">{{ Translation('cadastrar') }}</button>
+        </fieldset>
+    </form>
+</section>

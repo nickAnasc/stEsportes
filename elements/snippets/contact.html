@@ -1,0 +1,30 @@
+ <ul>
+        {% if Translation('ag_telefone_1') != '' or settings.numWhatsapp != '' %}
+        <li class="u-phone d-flex align-center">
+                <i class="fab fa-whatsapp"></i>
+                <p data-tray-tst="contato_telefone">{{ settings.numWhatsapp }}</p>
+        </li>
+        <li class="u-phone d-flex align-center">
+                <i class="fas fa-phone-alt"></i>
+                <p data-tray-tst="contato_telefone">{{ Translation('ag_telefone_1') }}</p>
+        </li>
+        {% endif %} 
+        {% if Translation('ag_atendimento') != '' %}
+        <li class="u-service d-flex align-center">
+            <i class="far fa-clock"></i>
+            <div class="u-service__container" role="contentinfo">
+                <strong>Horário de Funcionamento</strong>
+                <p data-tray-tst="service_hours">{{ Translation('ag_atendimento') }}</p>
+            </div>
+        </li>
+        {% endif %} 
+        {% if Translation('ag_email_1') != '' or Translation('ag_email_2') != '' %}
+            <li class="u-email d-flex align-center">
+                <i class="far fa-envelope"></i>
+                <p data-tray-tst="contato_email">
+                    {{ Translation('ag_email_1') }}
+                    <br> {{ Translation('ag_email_2') }}
+                </p>
+            </li>
+    {% endif %}
+</ul>

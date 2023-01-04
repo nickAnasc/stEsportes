@@ -1,0 +1,72 @@
+<div class="container category-banner">
+    {% if banners.extra12 %}
+        <img class="banner-image" src="{{ banners.extra12.src }}">
+    {% endif %}
+</div>
+
+<div class="container catalog d-flex justify-between flex-wrap">
+    {% element 'snippets/breadcrumb' %}
+    <div class="catalog__content" modal-overlay>
+        <section class="catalog__filter">
+        <span modal-close>
+            <i class="fas fa-times"></i>
+        </span>
+        {% element 'new-smart-filter' %}
+    </section>
+    </div>
+    <div class="catalog__content">
+        <h1 class="catalog__name">{{ category.name }}</h1>
+        <section class="catalog__header">
+            {% if banner.title %}
+                <div class="banner banner__title">
+                    {{ banner.title }}
+                </div>
+            {% endif %}
+            
+            {% if products|length > 0 %}
+                
+                <div class="catalog__control d-flex justfy-between flex-wrap">
+                    {% element 'snippets/breadcrumb' %}
+                    {% if settings.compare %}
+                        <a href="/loja/comparador.php?loja={{store.id}}&IdDep={{category.id}}" class="button-compare">{{ Translation("comparar_produto") }}</a>
+                    {% endif %}
+                    {% element 'snippets/filter' {
+                        'brands': category.brands
+                    } %}
+                    <button class="btn-open-filter-mobile" modal-open>
+                        Filtro
+                    </button>
+                </div>
+                <div class="paginate__search">
+                    {{ paginate.counter('Encontramos {:count} produto(s) em {:pages} p&aacute;gina(s)') }}
+                </div>
+            {% endif %} 
+            
+            {% if category.small_description %}
+            <div class="category-description">
+                {{ category.small_description }}
+            </div>
+            {% endif %}    
+        </section>
+        
+        {% if products|length > 0 %}
+        
+            <section class="catalog-content clearfix">
+                {% element 'showcase-catalog' {
+                    "products": products
+                } %}
+            </section>
+        {% else %}
+            
+        {% endif %}
+        
+        {% if banner.bottom %}
+            <div class="banner banner-bottom ">
+                {{ banner.bottom }}
+            </div>
+        {% endif %}
+        <div class="pagination">
+            {% element 'snippets/paginate' %}
+        </div>
+    </div>
+</div>
