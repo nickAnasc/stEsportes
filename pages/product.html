@@ -1,184 +1,223 @@
 <div class="container">
-    {% if banner.title %}
-    <div class="banner banner-title ">
-        {{ banner.title }}
+    <div class="product-breadcrumb">
+        {% element 'snippets/breadcrumb' %}
     </div>
-    {% endif %} {% for discount in ProgressiveDiscounts %} {% if discount.banner %}
-    <img src="{{ discount.banner }}" alt="{{discount.name}}" /> {% endif %} {% endfor %}
-    <section id="product-container" class="produto-wrapper product-detail" itemscope itemtype="http://schema.org/Product">
-        {% element 'snippets/schema-product' %} {% element 'snippets/breadcrumb' { "class": 'breadcrumb'} %}
-        <div class="flex-content-product">
-            <div class="product-colum-left">
-                {% if product.images %}
-                <!--<div id="visualBlock" class="product-gallery {{ product.images|length  <= 1 and not product.video ? 'hide-carousel' }}">-->
-                <!--    {{ productHelper.gallery() }}-->
-                <!--</div>-->
-                {% set images = product.images %}
-                <div class="zoom-hover">
-                    <img class="main-photo-content" src="{{ images[0].full }}" alt="">
-                </div>
-                <div class="photo-carrossel">
-                    {% for photos in images %}
-                    <img class="change-photo" data-full="{{ photos.full }}" src="{{ photos.large }}"> {% endfor %}
-                </div>
-
-                {% else %}
-                <div class="product-gallery no-image">
-                    <img src="{{ asset('img/no-image.svg') }}" alt="Nenhuma imagem foi cadastrada">
-                </div>
-                {% endif %} {% if settings.social_position == 0 %}
-                <div class="product-social sidepicture">
-                    {{ productHelper.social() }}
-                </div>
-                {% endif %}
-            </div>
-            <div class="product-colum-right">
-                {% if productHelper.banner() %}{{ productHelper.banner() }}{% endif %}
-                <div>
-                    <div class="flex-stamps">
-                        {% if product.featured %}
-                        <span class="stamps stamps-featured">Destaque</span> {% endif %} {% if product.new %}
-                        <span class="stamps stamps-new">Lançamento</span> {% endif %} {% if product.free_shipping %}
-                        <span class="stamps stamps-free_shipping">Frete Grátis</span> {% endif %} {% if product.additional_button %}
-                        <span class="stamps stamps-free_add-button">Selo Adicional</span> {% endif %}
+    <div class="product-content">
+        <input type="hidden" class="prod-id" value="{{ product.id }}">
+        {% set images = product.images %}
+        <div class="product-content__flex">
+            <div class="colum-prod-photo">
+                <div class="content-image">
+                    <div class="zoom-content-image">
+                        <img class="content-image__full" onmouseover="magnify('.content-image__full', 1.7)"
+                            src="{{ images[0].full }}">
                     </div>
-                    <h1 class="product-name" itemprop="name">{{ product.name }}</h1>
-                    <p class="description-small">{{ product.description_small }}</p>
-                </div>
-                <input type="hidden" class="hidden-id-product" name="custId" value="{{ product.id }}">{% element 'product/rating' %} {% for discount in ProgressiveDiscounts %} {% if discount.tag %}
-                <div class="product-discount-recursive-tag">{{discount.tag}}</div>
-                <div class="product-discount-recursive-desc">{{discount.description}}</div>
-                {% endif %} {% endfor %}
-
-                <p class="product-details">
-                    {% if settings.show_product_stock %}
-                    <span>Estoque: <b>{{ product.stock }}</b></span> {% endif %} {{ productHelper.details() }} {{ productHelper.icons() }}
-                </p>
-                {{ productHelper.bonus() }}
-                <form id="form_comprar" method="post" data-app="product.buy-form" action="{{ links.cart_add ~ product.id }}">
-                    {% if settings.cache_infopreco %}
-                    <div data-module="pricing" data-snippet="snippets/pricing" data-product-id="{{ product.id }}">
-                        <div class="pricing">
-                            Carregando...
+                    <div class="content-image__carrossel">
+                        <div class="thumb-carrossel control-thumb">
+                            {% for thumb in images %}
+                            <img class="thumb change-photo" onClick="changeMainPhoto('{{ thumb.full }}')"
+                                src="{{ thumb.large }}">
+                            {% endfor %}
                         </div>
                     </div>
-                    {% else %} {{ productHelper.pricing() }} {% endif %} {% if product.additional_message %}
-                    <div class="additional-message">
-                        {{ product.additional_message }}
+                </div>
+            </div>
+            <div class="colum-prod-info">
+                <input type="hidden" class="start-promotion" data-start="{{ product.start_promotion }}">
+                <input type="hidden" class="end-promotion" data-end="{{ product.end_promotion }}">
+                <div class="contador-promotion">
+                    <div class="content">
                     </div>
-                    {% endif %} {%if product.payment %}
-                    <!-- <section class="product__payment" modal-open>
-                        <i class="fas fa-credit-card"></i>
-                        <a title="Clique para abrir o modal de forma de pagamentos" href="#Aba2">
-                            Ver mais formas de pagamento
-                        </a>
-                    </section> -->
-                    {% endif %} 
-                    {{ product.additional_information }} 
-                    {{ productHelper.variants() }} 
-                    {{ productHelper.gifts() }} 
-                    {{ productHelper.kit() }}
-                    {{ productHelper.shipping() }} 
-                    {{ productHelper.form() }} 
-                    {% if not product.upon_request and product.available %} 
-                        {{ productHelper.wishlist() }} 
+                    <div class="promotion-off-content">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="prod-seal">
+                    {% if product.featured %}
+                    <span class="seal destaque-seal">Destaque</span>
                     {% endif %}
-                </form>
+                    {% if product.new %}
+                    <span class="seal lancamento-seal">Lançamento</span>
+                    {% endif %}
+                    {% if product.free_shipping %}
+                    <span class="seal frete-gratis-seal">Frete Grátis</span>
+                    {% endif %}
+                </div>
+                {% set ranking = product.ranking %}
+                {% if ranking.rating %}
+                <div class="ranking-content">
+                    {% for star in 1..ranking.rating %}
+                    <i class="fas fa-star"></i>
+                    {% endfor %}
 
-                {% if settings.social_position == 1 %}
-                <div class="product-social">
-                    {{ productHelper.social() }}
+                    {% if ranking.rating < 5 %} {% set emptystar=5 - ranking.rating %} {% for i in 1..emptystar %} <i
+                        class="far fa-star"></i>
+                        {% endfor %}
+                        {% endif %}
                 </div>
                 {% endif %}
-            </div>
-        </div>
-    </section>
-    {% if product.video %}
-        <section class="video-product">
-            <h1 class="showcase__title">Vídeo</h1>
-            <iframe class="responsive-iframe" src="{{ product.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </section>
-    {% endif %}
-    <section id="ProdBlock" class="product-tabs">
-            <a name="formaPagto"></a>
-            <div id="ProdAbas" class="abasProduto tab-panel">
-                <ul class="tabs-content">
-                    {% for key, tab in productTabs %}
-                      {% if tab.container_id %}
-                      <li id="{{ tab.id }}" {% if key=='description' %}class="aberta" {% endif %}>
-                        <a href="#" data-tab-container-id="{{ tab.container_id }}" data-tab-url="{{ tab.url }}">{{ tab.description }}</a>
-                      </li>
-                      {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-        
-            <div id="descricao" class="prodBox">
-                <div class="board">
-                    <div class="board_htm description">
-                        {{ product.description ? product.description : product.description_small }}
-                    </div>
+                <h1 class="prod-name">{{ product.name }}</h1>
+                <div class="details-content">
+                    {{ productHelper.details() }}
                 </div>
-            </div>
-        
-            <div id="itensInclusos" class="prodBox">
-                <div class="board">
-                    {{ product.included_items }}
+                <div class="desc-simplificada">
+                    {{ product.description_small }}
                 </div>
-            </div>
-        
-            <div id="coments" class="prodBox">
-                <div class="board">
-                    {% element 'product/comments' %}
+                <div class="price-content">
+                    <p class="price"></p>
+                    <p class="price-promotion"></p>
+                    <p class="parcelamento"></p>
                 </div>
-            </div>
-        
-            <div id="caracteristicas" class="prodBox">
-                <div class='board'>
-                    {% element 'product/properties' %}
-                </div>
-            </div>
-        
-            {{ productTabs.custom.content }}
-            {{ productTabs.downloads.content }}
-        
-            <div id="garantia" class="prodBox">
-                <img class="loader" src="{{ tray.paths.system_image }}/big-loading.svg"  />
-            </div>
-            <div data-app="product.payment-methods" id="formasPagto" class="prodBox"  ></div>
-        </section>
-    {% if productHelper.bundle() %}
-    <section class="product-cross-sell">
-        <h3>{{ Translation('compre_junto') }}</h3>
-        {{ productHelper.bundle() }}
-    </section>
-    {% endif %} {% if product.related_products %}
-    <div id="prognoos_lsi"></div>
-    <section class="products-related">
-        <h3 class="related-title">Aproveite e leve também</h3>
-        <div class="control">
-            <div class="related-content">
-                {% for related in product.related_products %}
-                <div class="related-item">
-                    {% element 'snippets/product' {"product": related} %}
-                </div>
-                {% endfor %}
-            </div>
-            <button aria-label="Previous" class="slider-prev"><i class="fas fa-chevron-left"></i></button>
-            <button aria-label="Next" class="slider-next"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </section>
-    {% endif %}
 
-    <div id="prognoos_ib"></div>
-    {% if settings.history_position == 1 %}
-    <section class="products-visited col-sm-12">
-        <h3 class="related-title">{{ Translation('produtos_visitados') }}</h3>
-        {% element 'snippets/history' { 'store.id': store.id, 'pages.current': pages.current, 'category.id': category.id } %}
-    </section>
-    {% endif %} {% if banner.bottom %}
-    <div class="banner banner-bottom ">
-        {{ banner.bottom }}
+                {% if product.upon_request %}
+                <form id="form_comprar" class="buy-content upon-request" method="post" data-app="product.buy-form"
+                    action="{{ links.cart_add ~ product.id }}">
+                    {{ productHelper.pricing() }}
+                </form>
+                {% else %}
+                <form id="form_comprar" class="buy-content" method="post" data-app="product.buy-form"
+                    action="{{ links.cart_add ~ product.id }}">
+                    <div class="variants-content">
+                        {{ productHelper.variants() }}
+                    </div>
+                    <div class="product-add-information">
+                        {{ product.additional_information }}
+                    </div>
+                    <div class="qtde-content">
+                        <span id="span_erro_carrinho" class="blocoAlerta" style="display:none;">Selecione uma opção para
+                            variação do produto</span>
+                        <div class="flex-qtde-buy">
+                            <div data-app="product.quantity" id="quantidade">
+                                <input type="button" id="plus" value='-' onclick="process(-1)" />
+                                <input id="quant" name="quant" class="text" size="1" type="text" value="1"
+                                    maxlength="5" />
+                                <input type="button" id="minus" value='+' onclick="process(1)">
+                            </div>
+                            <button class="btn-buy" type="submit">Comprar</button>
+                        </div>
+                    </div>
+                </form>
+                {% endif %}
+
+                {% if productHelper.kit() %}
+                <div class="kit-content">
+                    {{ productHelper.kit() }}
+                </div>
+                {% endif %}
+
+                <div class="frete-content">
+                    {{ productHelper.shipping() }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if productHelper.bundle() %}
+    <div class="bundle-content">
+        <h1 class="showcase__title">Compre Junto</h1>
+        {{ productHelper.bundle() }}
     </div>
     {% endif %}
+
+    {% if product.video %}
+    <div class="video-content">
+        <h1 class="title">Vídeo</h1>
+        <iframe class="video-content__responsive" width="1904" height="768" src="{{ product.video }}" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+    </div>
+    {% endif %}
+
+    <div id="ProdBlock" class="product-tabs">
+        <a name="formaPagto"></a>
+        <div id="ProdAbas" class="abasProduto tab-panel">
+            <ul class="list-tabs">
+                {% for key, tab in productTabs %}
+                {% if tab.container_id %}
+                <li id="{{ tab.id }}" {% if key=='description' %}class="aberta" {% endif %}>
+                    <a href="#" data-tab-container-id="{{ tab.container_id }}" data-tab-url="{{ tab.url }}">{{
+                        tab.description }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div id="descricao" class="prodBox">
+            <div class="board">
+                <div class="board_htm description">
+                    {{ product.description ? product.description : product.description_small }}
+                </div>
+            </div>
+        </div>
+
+        <div id="itensInclusos" class="prodBox">
+            <div class="board">
+                {{ product.included_items }}
+            </div>
+        </div>
+
+        <div id="coments" class="prodBox">
+            <div class="board">
+                {% element 'product/comments' %}
+            </div>
+        </div>
+
+        <div id="caracteristicas" class="prodBox">
+            <div class='board'>
+                {% element 'product/properties' %}
+            </div>
+        </div>
+
+        {{ productTabs.custom.content }}
+        {{ productTabs.downloads.content }}
+
+        <div id="garantia" class="prodBox">
+            <img class="loader" src="{{ tray.paths.system_image }}/big-loading.svg" />
+        </div>
+        <div data-app="product.payment-methods" id="formasPagto" class="prodBox"></div>
+    </div>
 </div>
+
+{% if product.related_products %}
+<div class="showcase container related-products" data-tray-tst="vitrine_home">
+    <h1 class="showcase__title">Produtos Relacionados</h1>
+    <div class="control">
+        <ul class="showcase-content product-carrossel prod" style="width: 100%;">
+            {% for related in product.related_products %}
+            <li class="showcase-content__item" data-tray-tst="vitrine_produto" itemscope
+                itemtype="https://schema.org/SomeProducts">
+                {% element 'snippets/product' {"product": related} %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}
+
+<script>
+    function process(quant) {
+        var value = parseInt(document.getElementById("quant").value);
+        value += quant;
+        if (value < 1) {
+            document.getElementById("quant").value = 1;
+        } else {
+            document.getElementById("quant").value = value;
+        }
+    }
+
+    function changeMainPhoto(link) {
+        var imageFullContent = document.querySelector('.content-image__full');
+
+        imageFullContent.setAttribute('src', link);
+    }
+
+    (function () {
+        setTimeout(function () {
+            var price = document.querySelector('.price-content .price');
+            if (price.dataset.pricefull == '0.00') {
+                price.innerHTML = "Produto sob consulta."
+            }
+        }, 500)
+    })();
+</script>

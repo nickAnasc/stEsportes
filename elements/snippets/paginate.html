@@ -1,41 +1,28 @@
-<div class="paginate">    
-    <div class="paginate__links">
+<div>
+    <!-- <div>
+        {{ paginate.counter('Encontramos {:count} produto(s) em {:pages} página(s)') }}
+    </div> -->
+    
+    <div class="paginate-content">
     {% if paginate.params.pageCount > 1 %}
-        {{ paginate.first('Primeiro', {'class': 'page-first page-link'}) }}
+        {{ paginate.first('<<', {'class': 'first-page'}) }}
      
         {% if paginate.hasPrev %}
-            {{ paginate.prev('<', {'class': 'page-prev page-link'}) }}
+            {{ paginate.prev('<', {'class': 'prev-page'}) }}
         {% endif %}
      
         {{ paginate.numbers({
             'modulus': 5,
             'separator': '',
-            'class': 'page-link',
+            'class': 'paginate-count',
             'currentClass': 'page-current'
         }) }}
      
         {% if paginate.hasNext %}
-            {{ paginate.next('>', {'class': 'page-next page-link'}) }}
+            {{ paginate.next('>', {'class': 'next-page'}) }}
         {% endif %}
      
-        {{ paginate.last('Último', {'class': 'page-last page-link'}) }}
+        {{ paginate.last('>>', {'class': 'last-page'}) }}
     {% endif %}
     </div>
 </div>
-
-<script>
-    (function(){
-        setTimeout(function(){
-            var btnPageLink = document.querySelectorAll('.page-link');
-
-            btnPageLink.forEach(element => {
-                if(element.classList.contains('page-next')) {
-                    element.querySelector('a').innerHTML = '<i class="fas fa-angle-right"></i>'
-                }
-                else if(element.classList.contains('page-prev')) {
-                    element.querySelector('a').innerHTML = '<i class="fas fa-angle-left"></i>'
-                }
-            });
-        }, 500)
-    })()
-</script>

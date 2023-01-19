@@ -13,7 +13,6 @@
                             {% for level2 in level1.children %}
                                 <li class="item-level2">
                                     <a href="{{ level2.link }}" class="link-level2" data-tray-tst="categoria_lvl_2">{{ level2.name }}</a>
-                                    <i class="fas fa-chevron-down"></i>
                                     {% if level2.children %}
                                         <div class="level3">
                                             <ul>

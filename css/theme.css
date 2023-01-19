@@ -293,7 +293,7 @@ input {
     background-color: rgb(0 0 0 / 75%);
 }
 
-@media(max-width: 1023px) {
+@media(max-width: 1024px) {
     [modal-overlay] {
         z-index: 20;
     }
@@ -1020,7 +1020,7 @@ a[href="/mapa-do-site"] {
 }
 
 .varCont>* {
-    margin: 0 !important
+    margin-left: 0 !important;
 }
 
 .varCont ul li {
@@ -1694,6 +1694,17 @@ a[href="/mapa-do-site"] {
 .board .left,
 .form_depto label h5 {
     font-size: 1.3rem;
+}
+
+.left{
+    text-align: center !important;
+    float: none !important;
+}
+
+.right{
+    margin-top: 5px;
+    text-align: center !important;
+    float: none !important
 }
 
 .page-depoimentos h2 {
@@ -3648,17 +3659,24 @@ div[id^=AbaPersonalizada] table td {
 
 .page-catalog .button-compare,
 .page-search .button-compare {
-    background: #000;
+    background: #ed2333;
     color: #fff;
     float: right;
     margin-top: 18px;
-    padding: 10px;
+    padding: 14px 10px;
     text-decoration: none;
     text-transform: uppercase;
-    font-family: "Roboto", sans-serif;
+    font-family:  "Arimo", sans-serif;
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 1.6rem
+}
+
+@media(max-width: 1024px) {
+    .page-catalog .button-compare,
+    .page-search .button-compare {
+        margin-bottom: 10px;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -4637,12 +4655,12 @@ div[id^=AbaPersonalizada] table td {
     padding: 0;
     top: 0;
     background: #fff;
-    border: 1px solid #e9e9e9
+    /* border: 1px solid #e9e9e9 */
 }
 
 .page-comparador .comparatorTabs li.aberta a {
     background: #fff;
-    border: 1px solid #eee;
+    /* border: 1px solid #eee; */
     border-bottom: none;
     color: #3d4445;
     font: 400 15px/35px "Roboto", sans-serif;
@@ -4654,7 +4672,7 @@ div[id^=AbaPersonalizada] table td {
 .page-comparador .comparatorTabs li.aberta a.closeCat {
     background: #fff;
     border-radius: 20px;
-    border: 1px solid #3d4445;
+    /* border: 1px solid #3d4445; */
     color: #3d4445;
     font-size: 11px;
     height: 20px;
@@ -4710,6 +4728,20 @@ div[id^=AbaPersonalizada] table td {
     margin: 0 0 30px
 }
 
+.comparator ul li{
+    border-top: none !important;
+    border-right: none !important
+}
+
+.comparator ul .Labels{
+    display: none;
+}
+
+.comparator ul li ul .comparsionRate {
+    display: none !important;
+    height:0 !important;
+}
+
 .page-comparador .comparator>ul {
     font-size: 0;
     overflow: hidden;
@@ -4718,12 +4750,14 @@ div[id^=AbaPersonalizada] table td {
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
-    display: flex
+    display: flex;
+    justify-content: center;
+
 }
 
 .page-comparador .comparator>ul>li.Labels ul li {
     background: #fff !important;
-    padding: 0;
+    padding: 5px 0 0 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4732,7 +4766,7 @@ div[id^=AbaPersonalizada] table td {
 }
 
 .page-comparador .comparator>ul>li {
-    border-left: 1px solid #eee;
+    /* border-left: 1px solid #eee; */
     padding: 10px 0 0 0;
     margin: 0;
     -webkit-box-flex: 1 auto;
@@ -4743,17 +4777,18 @@ div[id^=AbaPersonalizada] table td {
 }
 
 .page-comparador .comparator>ul>li:nth-child(2) {
-    border-left: none
+    /* border-left: transparent */
 }
 
 .page-comparador .comparator>ul>li ul li {
     display: block;
-    border-top: 1px solid #eee;
+    /* border-top: 1px solid #eee; */
     font-size: 1.4rem;
     padding: 10px;
     background: #fff;
     margin: 0;
-    padding: 5px 10px 0
+    padding: 5px 10px 0;
+    border: none;
 }
 
 .page-comparador .comparator>ul>li ul li:first-child {
@@ -4761,7 +4796,19 @@ div[id^=AbaPersonalizada] table td {
 }
 
 .page-comparador .comparator>ul>li ul li.displayGarantia {
-    height: 70px !important
+    display: none !important;
+}
+
+.page-comparador .comparator>ul>li ul li.displayDisponibilidade{
+    display: none !important;
+}
+
+.page-comparador .comparator>ul>li ul li.displayMarca{
+    display: none !important;
+}
+
+.page-comparador .comparator>ul>li ul li.displayModelo{
+    display: none !important;
 }
 
 .page-comparador .comparator>ul>li ul li.comparsionFoto {
@@ -4794,7 +4841,8 @@ div[id^=AbaPersonalizada] table td {
 }
 
 .page-comparador .comparator>ul>li ul li.comparsionFoto .closeComp {
-    background: #fff;
+    display: none;
+    /* background: #fff;
     border-radius: 20px;
     border: 1px solid #3d4445;
     color: #3d4445;
@@ -4806,16 +4854,17 @@ div[id^=AbaPersonalizada] table td {
     right: 10px;
     text-align: center;
     top: 8px;
-    width: 20px
+    width: 20px */
 }
 
 .page-comparador .comparator>ul>li ul li.comparsionInfoPreco {
-    font-size: 1.2rem;
-    height: 130px
+    font-size: 1.4rem;
+    height: 90px;
+    text-align: center;
 }
 
 .page-comparador .comparator>ul>li ul li.comparsionDescricao {
-    height: 200px
+    height: 100px
 }
 
 .page-comparador .comparator>ul .ranking {
@@ -4824,6 +4873,50 @@ div[id^=AbaPersonalizada] table td {
     margin: 15px auto;
     width: 100px
 }
+
+.comparator a[title="Escolher"] img {
+   display: none !important;
+}
+.comparator a[title="Escolher"]::before {
+   content: "Escolher"
+}
+
+.comparator a[title="Escolher"]{
+    font-size: 15px;
+    display: block;
+    margin: 0 auto;
+    width: 30%;
+    background-color:var(--bgBotao);
+    color: var(--textBotao);
+    margin-top: 10px;
+    font-family: 'Arimo', sans-serif;
+    padding: 14px 10px;
+    border-radius: 30px;
+    text-decoration: none;
+}
+
+.comparator a[title="Comprar"] img {
+    display: none !important;
+}
+
+ .comparator a[title="Comprar"]::before {
+    content: "Comprar";
+ }
+
+ .comparator a[title="Comprar"]{ 
+     font-size: 15px;
+     display: block;
+     margin: 0 auto;
+     width: 30%;
+     background-color:var(--bgBotao);
+     color: var(--textBotao);
+     margin-top: 10px;
+     font-family: 'Arimo', sans-serif;
+     padding: 14px 10px;
+     border-radius: 30px;
+     text-decoration: none;
+ }
+
 .cart-preview-quantity-tag-box {
     background-color: var(--bgBotao)!important;
     color: var(--textBotao);
@@ -5366,7 +5459,8 @@ form#form1 {
 .page-login #email_cadastro,
 .page-login #email_login,
 .page-login #senha_login {
-    border: 1px solid #ddd;
+    background-color: #fff;
+    border: 2px solid #dfdddd;
     color: var(--gray);
     border-radius: .4rem;
     display: block;
@@ -6418,7 +6512,7 @@ form#form1 {
     display: block;
     height: 55px;
     margin: 10px auto;
-    width: 55px
+    width: 55px;
 }
 
 .page-product .product-gallery #foto_a .jcarousel-skin-tango .jcarousel-container-horizontal {
@@ -6764,7 +6858,14 @@ form#form1 {
 
 .page-product #menuVars .select,
 .page-product #menuVars .text {
-    color: #aaa;
+    background-color: #fff;
+    border: 2px solid #dcdcdc;
+    height: 40px;
+    margin: 0 0.2rem;
+    text-align: center;
+    border-radius: 0.3rem;
+    margin-right: 10px;
+    /* color: #aaa;
     height: 40px;
     min-width: 200px;
     margin-bottom: 15px !important;
@@ -6772,7 +6873,16 @@ form#form1 {
     font-family: "Roboto", sans-serif;
     font-size: 1.4rem;
     font-weight: 400;
-    line-height: 1.6rem
+    line-height: 1.6rem */
+}
+.textarea{
+    background-color: #fff;
+    border: 2px solid #dcdcdc;
+    height: 40px;
+    margin: 0 0.2rem;
+    text-align: center;
+    border-radius: 0.3rem;
+    margin-right: 10px;
 }
 
 .page-product .texto_variacao {
@@ -6826,6 +6936,12 @@ form#form1 {
     display: block;
     height: 100%;
     position: relative;
+    background-color: #fff;
+    border: 2px solid #dcdcdc;
+    height: 40px;
+    margin: 0 0.2rem;
+    text-align: center;
+    border-radius: 0.3rem;
 }
 
 .page-product #quantidade>label .plus-qtd,
@@ -6870,7 +6986,7 @@ img.change-photo.slick-slide.slick-active:focus {
 .page-product #quant {
     height: 100%;
     padding: 10px 0px 10px 15px;
-    border: 2px solid #dcdcdc;
+    border:none;
     border-radius: 4px;
 }
 
@@ -7013,7 +7129,7 @@ img.change-photo.slick-slide.slick-active:focus {
 
 .page-product .product-buy-button,
 .page-product .botao-comprar {
-    padding: 16px 50px;
+    padding: 13px 30px;
     text-align: center;
     font-size: 2rem;
     font-weight: 400;
@@ -7814,9 +7930,9 @@ img.change-photo.slick-slide.slick-active:focus {
     line-height: 1.6rem
 }
 
-br {
+/* br {
     display: none;
-}
+} */
 
 .page-product .product-cross-sell .precoCompreJunto div:first-child strong {
     color: #333;
@@ -9821,7 +9937,8 @@ html.menu-open .backdrop-icon {
     font-size: 1.5rem;
     border-radius: 12px;
     border-radius: 0 !important;
-    
+    text-align: center;
+
 }
 
 .newletter__fieldset {
@@ -10121,7 +10238,7 @@ h2.newsletter__subtitle {
     position: relative;
     font-size: 0;
     margin-bottom: 15px;
-    text-align: center
+    text-align: center;
 }
 
 .responsive-iframe {
@@ -10729,7 +10846,23 @@ h2.newsletter__subtitle {
     right: 0;
     top: 100%;
     z-index: 2000;
+    height: 400px;
+    overflow-y: scroll;
 }
+
+.suggestion::-webkit-scrollbar {
+    width: 12px;
+    
+  }
+   
+.suggestion::-webkit-scrollbar-track {
+    background-color:#dcdcdc;
+  }
+   
+.suggestion::-webkit-scrollbar-thumb {
+    background-color:#333;
+    border-radius: 30px;
+  }
 
 @media(max-width: 767px) {
     .suggestion {
@@ -10741,8 +10874,10 @@ h2.newsletter__subtitle {
 }
 
 .suggestion.is-hidden {
-    display: none
+    display: none;
 }
+
+
 
 .suggestion-title {
     background: none !important;
@@ -10755,7 +10890,7 @@ h2.newsletter__subtitle {
     text-transform: uppercase;
     font-family: "Roboto", sans-serif;
     font-size: 1.6rem;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1.7rem
 }
 
@@ -10771,7 +10906,7 @@ h2.newsletter__subtitle {
     margin: 0 0 10px;
     font-family: "Roboto", sans-serif;
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1.5rem
 }
 
@@ -10794,7 +10929,7 @@ h2.newsletter__subtitle {
 .suggestion-products a {
     display: flex;
     align-items: center;
-    padding: 15px 0
+    padding: 15px 0;
 }
 
 .suggestion-products a:hover {
@@ -10818,12 +10953,13 @@ h2.newsletter__subtitle {
     margin: 0 15px 0 0;
     overflow: hidden;
     text-align: center;
-    width: 90px
+    width: 90px;
+    border-radius: 8px;
 }
 
 .suggestion-products .suggestion-img img {
     border: 1px solid #ebebeb;
-    max-height: 90px
+    max-height: 90px;
 }
 
 .suggestion-products .suggestion-product {
@@ -12707,3 +12843,4 @@ li#Aba2 {
     background: #333;
     border-radius: 30px;
 }
+

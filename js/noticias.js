@@ -1,23 +1,42 @@
-setTimeout(function () {
-    if(document.querySelector('.page-home')) {
-        jQuery(document).ready(function () {
-            document.getElementsByTagName("html")[0].getAttribute("data-store");
-            var s = "busca_noticias.php?loja=" + document.getElementsByTagName("html")[0].getAttribute("data-store"),
-                e = jQuery(".noticias-content");
-            jQuery.ajax({
-                url: s,
-                type: "GET",
-                async: !0,
-                success: function (s) {
-                    var t = s.replace(/src/g, 'class="lazy-notices" src');
-                    e.html('<div class="noticias">' + jQuery(t).find(".noticias").html() + "</div>"),
-                        e.find("li").wrapInner('<div class="box-noticia"></div>'),
-                        e.find(".noticias li:nth-child(n+4)").remove()
-                        if(document.querySelector('.noticias').textContent == "undefined") {
-                            document.querySelector('.notices').style.display = 'none';
-                        }
-                },
-            });
-        });
-    }
-}, 100);
+(function noticias(){
+    setTimeout(function(){
+        var dataStore = document.querySelector('html').dataset.store;
+        var url = "busca_noticias.php?loja=" + dataStore
+        var stringHtml = '';
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type','text/plain; charset=UTF-8');
+
+        const newsHeader = {
+            method: 'GET',
+            mode: 'cors',
+            charset: 'UTF-8',
+            headers: myHeaders,
+        }
+        
+        console.log(url)
+
+        fetch(url, newsHeader)
+            .then(function (respNews) {
+                return respNews.arrayBuffer();
+            })
+            .then(function(buffer) {
+                const decoder = new TextDecoder('iso-8859-1');
+                const text = decoder.decode(buffer);
+
+                for(i = text.search('<ul class="noticias">'); i < text.search('</li></ul>        </div>'); i++) {
+                    stringHtml = stringHtml + text[i]
+                }
+                document.querySelector('.news__content').innerHTML = stringHtml + '</li></ul>';
+            })
+    }, 300)
+    setTimeout(function(){
+        if(document.querySelectorAll('.news__content li').length > 3) {
+            var total = document.querySelectorAll('.news__content li');
+            var max = 3;
+    
+            for( i = max; i < total.length; i++ ) {
+                total[i].remove();
+            }
+        }
+    }, 1500)
+})()

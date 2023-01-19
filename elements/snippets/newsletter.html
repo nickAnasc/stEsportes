@@ -1,15 +1,20 @@
-<section class="newsletter" data-tray-tst="newsletter_box">
-    <form class="newsletter__form" action="{{ links.newsletter }}&v=js" method="post" name="newsletter" data-tray-tst="newsletter_form">
-        <fieldset class="newletter__fieldset container">
-            <legend class="newsletter__legend">
-                <hgroup>
-                    <h3 class="newsletter__title">Cadastre-se e receba nossas</h3>
-                    <h2 class="newsletter__subtitle">Novidades</h2>
-                </hgroup>
-            </legend>
-                <input id="news-name" name="name" type="text" placeholder="{{ Translation('digitar_nome') }}" required class="newsletter-input">
-                <input id="news-email" name="email" type="email" placeholder="{{ Translation('digitar_email') }}" class="newsletter-input" data-tray-tst="newsletter_email" required>
-                <button class="newsletter__button" data-tray-tst="newsletter__button">{{ Translation('cadastrar') }}</button>
-        </fieldset>
-    </form>
+<section class="" data-tray-tst="newsletter_box">
+    <div class="newsletter">
+        <div>
+            <h1 class="newsletter-title">
+                Quer ficar por dentro das melhores ofertas?
+            </h1>
+            <h3 class="newsletter-subTitle">
+                Cadastre-se e não perca nenhuma novidade!
+            </h3>
+            <form class="form-content" action="{{ links.newsletter }}&v=js" method="post" name="newsletter"
+                data-tray-tst="newsletter_form">
+                <input id="news-name" class="inp-news" name="name" type="text"
+                    placeholder="{{ Translation('digitar_nome') }}" required>
+                <input id="news-email" class="inp-news" name="email" type="email"
+                    placeholder="{{ Translation('digitar_email') }}" data-tray-tst="newsletter_email" required>
+                <button class="btn-news" data-tray-tst="newsletter_cadastrar">{{ Translation('cadastrar') }}</button>
+            </form>
+        </div>
+    </div>
 </section>

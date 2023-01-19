@@ -21,27 +21,6 @@ a{
 	}
 }
 
-input{
-    border-radius: 0;
-    font-size: 1.6rem;
-}
-
-// .catalogo-comparator{
-//     background: none;
-//     border: none;
-//     float: none;
-//     font-size: inherit;
-//     margin: 0;
-//     padding: 0;
-//     text-align: left;
-//     width: auto;
-    
-//     &:hover{
-//         background: none;
-//         color: inherit;
-//     }
-// }
-
 // lazy
 .lazy[src*=loading]{
     padding: 30px;
@@ -139,80 +118,6 @@ input{
 }
 
 // organism
-#ProdAbas{
-    background: none;
-    display: block;
-    letter-spacing: 0;
-    text-transform: initial;
-    
-    ul{
-        padding: 0;
-    }
-    
-    li{
-        float: none;
-        background: none;
-        margin: 0;
-        padding: 0;
-        
-        &.aberta{
-            background: none;
-            float: none;
-            margin: 0;
-            
-            a{
-                background: none;
-                font-size: initial;
-                font-weight: initial;
-                padding: 0;
-            }
-        }
-    }
-    
-    a{
-        background: none;
-        font-size: initial;
-        padding: 0;
-    }
-}
-
-#CadastroAbas{
-    background: none;
-    border: none;
-    display: block;
-    letter-spacing: 0;
-    text-transform: initial;
-    
-    ul{
-        padding: 0;
-    }
-    
-    li{
-        float: none;
-        background: none;
-        margin: 0;
-        padding: 0;
-        
-        &.aberta{
-            background: none;
-            float: none;
-            margin: 0;
-            
-            a{
-                background: none;
-                font-size: initial;
-                font-weight: initial;
-                padding: 0;
-            }
-        }
-    }
-    
-    a{
-        background: none;
-        padding: 0;
-    }
-}
-
 html{
     .botao-commerce,
     .botao-commerce:hover,
@@ -340,12 +245,6 @@ html{
     height: auto;
     position: static;
     width: auto;
-}
-
-.prodBox{
-    background: none;
-    color: initial;
-    font-size: initial;
 }
 
 .container{
@@ -516,31 +415,6 @@ html{
 
 .show_size_and_color_type.passo1{
     margin: 0;
-}
-
-.lista_cor_variacao,
-.lista_cor_variacao2{
-    display: block;
-    overflow: hidden;
-    padding: 0;
-    
-    li{
-        float: none;
-        margin: 0;
-        padding: 0;
-        
-        img,
-        div{
-            border: none;
-            padding: 0;
-            
-            &.cor_selecionada{
-                background: none;
-                border: none !important;
-                margin: 0;
-            }
-        }
-    }
 }
 
 .sem_estoque{
@@ -736,17 +610,17 @@ html{
     }
 }
 
-#email_login{
-    width: auto !important;
-}
+// #email_login{
+//     width: auto !important;
+// }
 
-#senha_login{
-    width: auto !important;
-}
+// #senha_login{
+//     width: auto !important;
+// }
 
-#email_cadastro{
-    width: auto !important;
-}
+// #email_cadastro{
+//     width: auto !important;
+// }
 
 .caixa-cadastro{
     

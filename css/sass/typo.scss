@@ -2,17 +2,8 @@
  * Typography
  */
 
-a,
-a:hover {
-    color: #666;
-}
-
-h1,
-h2,
-h3, 
-h4,
-h5,
-h6 {
-    font-family: $font;
-    font-weight: 400;
-} 
+$regular: 400;
+$semiBold: 600;
+$bold: 700;
+$extraBold: 800;
+$black: 900;

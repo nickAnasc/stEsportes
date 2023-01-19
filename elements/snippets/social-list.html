@@ -1,43 +1,36 @@
-<ul class="social-list">
-    {% if settings.linkFacebook %}
-        <li>
-            <a href="{{ settings.linkFacebook }}" target="_blank" class="link-social">
-                <i class="fab fa-facebook"></i>
+<ul class="social-media">
+    {% if settings.socialFacebook %}
+        <li class="social-media__item">
+            <a href="{{ settings.socialFacebook }}" target="_blank">
+                <i class="social-icon fab fa-facebook-f facebook"></i></i>
             </a>
         </li>
     {% endif %}
-    {% if settings.linkTwitter %}
-        <li>
-            <a href="{{ settings.linkTwitter }}" target="_blank" class="link-social">
-                <i class="fab fa-twitter"></i>
+    {% if settings.socialTwitter %}
+        <li class="social-media__item">
+            <a href="{{ settings.socialTwitter }}" target="_blank">
+                <i class="social-icon fab fa-twitter twitter"></i></i>
             </a>
         </li>
     {% endif %}
-    {% if settings.linkPinterest %}
-        <li>
-            <a href="{{ settings.linkPinterest }}" target="_blank" class="link-social">
-                <i class="fab fa-pinterest"></i>
+    {% if settings.socialInstagram %}
+        <li class="social-media__item">
+            <a href="{{ settings.socialInstagram }}" target="_blank">
+                <i class="social-icon fab fa-instagram instagram"></i>
             </a>
         </li>
     {% endif %}
-    {% if settings.linkLinkedin %}
-        <li>
-            <a href="{{ settings.linkLinkedin }}" target="_blank" class="link-social">
-                <i class="fab fa-linkedin"></i>
+    {% if settings.socialPinterest %}
+        <li class="social-media__item">
+            <a href="{{ settings.socialPinterest }}" target="_blank">
+                <i class="social-icon fab fa-pinterest-p pinterest"></i>
             </a>
         </li>
     {% endif %}
-    {% if settings.linkYoutube %}
-        <li>
-            <a href="{{ settings.linkYoutube }}" target="_blank" class="link-social">
-                <i class="fab fa-youtube"></i>
-            </a>
-        </li>
-    {% endif %}
-    {% if settings.linkInstagram %}
-        <li>
-            <a href="{{ settings.linkInstagram }}" target="_blank" class="link-social">
-                <i class="fab fa-instagram"></i>
+    {% if settings.socialYoutube %}
+        <li class="social-media__item">
+            <a href="{{ settings.socialYoutube }}" target="_blank">
+                <i class="social-icon fab fa-youtube youtube"></i>
             </a>
         </li>
     {% endif %}

@@ -1,0 +1,34 @@
+<section class="banner-triplo container">
+    <div class="carrossel-init">
+        {% if banner.extra5 %}
+            <a href="{{ banners.extra5.link ? banners.extra5.link : 'javascript:;' }}">
+                <img class="image-banner" src="{{ banners.extra5.src }}">
+            </a>
+        {% endif %}
+        {% if banner.extra6 %}
+            <a href="{{ banners.extra6.link ? banners.extra6.link : 'javascript:;' }}">
+                <img class="image-banner" src="{{ banners.extra6.src }}">
+            </a>
+        {% endif %}
+        {% if banner.extra7 %}
+            <a href="{{ banners.extra7.link ? banners.extra7.link : 'javascript:;' }}">
+                <img class="image-banner" src="{{ banners.extra7.src }}">
+            </a>
+        {% endif %}
+    </div>
+</section>
+
+<!-- <div class="container banner-line">
+    {% if banner.extra5 %}
+        <a class="banner-line__desk" href="{{ banners.extra5.link ? banners.extra5.link : 'javascript:;' }}">
+            <img src="{{ banners.extra5.src }}">
+        </a>
+    {% endif %}
+
+    {% if banner.extra6 %}
+        <a class="banner-line__mobile" href="{{ banners.extra6.link ? banners.extra6.link : 'javascript:;' }}">
+            <img src="{{ banners.extra6.src }}">
+        </a>
+    {% endif %}
+    
+</div> -->

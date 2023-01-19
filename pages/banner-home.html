@@ -10,8 +10,7 @@
                                       {{ ( settings.banner_adaptive_height )    ? '"adaptiveHeight": true,' : '"adaptiveHeight": false,' }}
                                       {{ ( settings.banner_infinite )           ? '"infinite":       true,' : '"infinite":       false,' }}
                                       {{ ( settings.banner_effect_fade )        ? '"fade":           true'  : '"fade":           false'  }} }'
-                data-autoplay="{{ settings.banner_autoplay ? 'true' : 'false' }}"
-            >
+                data-autoplay="{{ settings.banner_autoplay ? 'true' : 'false' }}">
                 {% for slide in banners.home.slides %}
                 <div{{ loop.index == 1 ? ' class="first-slide"' }}>
                     <a href="{{ slide.link }}" target="{{ slide.target }}">

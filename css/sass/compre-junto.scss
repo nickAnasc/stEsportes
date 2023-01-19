@@ -1,0 +1,118 @@
+.bundle-content {
+    margin-top: 50px;
+
+    #ProdBlockCompreJunto {
+        #ProdAbas, .cpClear {
+            display: none;
+        }
+
+        ul.compreJunto form {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                    justify-content: space-between;
+
+            @media(max-width: 1199px) {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                    -ms-flex-direction: column;
+                        flex-direction: column;
+            }
+        }
+
+        .fotosCompreJunto {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                    justify-content: space-between;
+            width: 60%;
+
+            @media(max-width: 1199px) {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            @media(max-width: 767px) {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                    -ms-flex-direction: column;
+                        flex-direction: column;
+
+                .plus {
+                    margin: 15px 0;
+                }
+            }
+
+            .produto {
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 20px;
+                border-bottom: 1px solid #ccc;
+                border-right: 1px solid #ccc;
+
+                .unidades_topo {
+                    text-align: center;
+                }
+            }
+
+            .plus {
+                background-color: var(--bgButton);
+                color: var(--textButton);
+                padding: 7px 10px;
+                border-radius: 50%;
+            }
+        }
+
+        .precoCompreJunto {
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 30px;
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+
+            .comprejuto_preco {
+                margin: 10px 0;
+
+                span {
+                    font-weight: $bold;
+                    font-size: 16px;
+                }
+            }
+
+            @media(max-width: 1199px) {
+                width: 100%;
+            }
+
+            strong:first-child {
+                font-size: 18px;
+                display: block;
+            }
+
+            .comprejunto_preco2 {
+                display: none;
+            }
+
+            .comprejunto_botao {
+                .botao-compre-junto {
+                    display: block;
+                    text-align: center;
+                    padding: 10px;
+                    background-color: var(--bgButton);
+                    color: var(--textButton);
+                    width: 100%;
+                    border-radius: 30px;
+                }
+            }
+        }
+    }
+}

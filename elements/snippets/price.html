@@ -1,4 +1,4 @@
-<div>
+<div class="product-price">
     {% if product.available %}        
             <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                 <meta itemprop="priceValidUntil" content="{{ product.promotion_id ? product.end_promotion: "now"|date("d/m/Y") }}">
@@ -12,6 +12,9 @@
                 {% endif %} 
                 <meta itemprop="url" content="{{ product.link }}"/>
             </span>
+
+    
+        
         {% if product.stock > 0 or settings.without_stock_sale %} 
         
             {% if product.upon_request %}
@@ -23,19 +26,9 @@
                         <span class="price-various">{{ Translation('a_partir_de') }}</span> 
                     {% endif %} 
                     
-                    {% if settings.price_before_style == 'strike' or settings.price_before_style == 'strike-depor' %}
-                        {% set priceStyle = 'strike' %}
-    
-                    {% endif %}
-                    
-                    {% if settings.price_before_style == 'depor' or settings.price_before_style == 'strike-depor' %}
-                        {% set priceOld = 'De: ' %}
-                    {% endif %}
-                        
                     {% if product.price_offer > 0 and product.show_price %}
-                        <div class="price-before {{ priceStyle }}">
-                            {{ priceOld }} 
-                            <abbr class="currency" title="BRL">{{ settings.currency }}</abbr> 
+                        <div class="price-before strike">
+                            {{ priceOld }} <abbr class="currency" title="BRL">{{ settings.currency }}</abbr> 
                             <span>{{ product.price|currency }}</span>
                         </div>
                         
@@ -51,17 +44,13 @@
                             </div>
                         </div>
                     {% else %}
-                        <div class="d-flex align-center flex-column">
+                        <div>
                             {% if product.has_other_prices %}
-                            <div class="price__complete">
-                                <abbr class="currency" title="BRL">{{ settings.currency }}</abbr>
+                                {{ Translation('apartir') }} <abbr class="currency" title="BRL">{{ settings.currency }}</abbr>
                                 <span content="{{ product.price }}">{{ product.price|currency  }}</span>
-                            </div>
                             {% else %}
-                            <div class="price__complete">
                                 {{ priceOld ? 'Por: ' }} <abbr class="currency" title="BRL">{{ settings.currency }}</abbr>
                                 <span content="{{ product.price }}">{{ product.price|currency  }}</span>
-                            </div>
                             {% endif %}
                         </div>
                     {% endif %}

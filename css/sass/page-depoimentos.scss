@@ -1,127 +1,116 @@
 .page-depoimentos{
-    
-    .page-content{
-        font-size: 1.4rem;
-        line-height: 1.6rem;
-        
-        > br{
-            display: none;
+    .page-content {
+        width: 1170px;
+        margin: 0 auto;
+        padding: 40px 15px;
+
+        @media(max-width: 1200px) {
+            width: 992px;
+        }
+
+        @media(max-width: 1024px) {
+            width: 768px;
         }
         
-        > div{
-            background: #fff;
-            padding: 30px;
-            
-            &:last-child{
-                margin-top: 0;
-            }
-            
-            @media screen and (max-width: $sm){
-                padding: 15px;
-            }
+        @media(max-width: 800px) {
+            width: 100%;
         }
-        
-        .board{
-            @media screen and (max-width: $sm){
-                .left,
-                .right{
-                    float: none;
-                    margin: 15px 0;
+
+        h1.color {
+            font-weight: $bold;
+        }
+
+        form#depoimento {
+            label {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                    -ms-flex-direction: column;
+                        flex-direction: column;
+
+                input.text,
+                textarea.textarea {
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                    transition: .3s;
+                    border-radius: 6px;
+                    width: 100%;
+                    font-size: 15px;
+                    resize: none;
+                    margin-top: 10px;
+
+                    &:focus {
+                        border: 1px solid #b8b8b8;
+                        border-radius: 15px 15px 0;
+                    }
                 }
             }
-        }
-        
-        h1{
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        
-        h2{
-            display: none;
-        }
-        
-        input[type="text"]{
-            display: block;
-            margin-top: 3px;
-            padding: 10px;
-            width: 50%;
-            
-            @media screen and (max-width: $sm){
-                width: 100%;
-            }
-        }
-        
-        textarea{
-            margin-top: 3px;
-            padding: 10px;
-            width: 100% !important;
-        }
-        
-        .btns-paginator {
-            border: 1px solid #aaa;
-            color: #aaa;
-            display: inline-block;
-            line-height: 2rem;
-            margin: 0 5px;
-            padding: 0 5px;
-            vertical-align: top;
-            
-            img{
-                display: none;    
-            }
-            
-            a{
-                color: #aaa;
+
+            .nota_dep label {
                 display: block;
-                line-height: 2rem;
-                padding: 0 5px;
             }
-            
-            &.selectedPg{
-                border-color: #3d4445;
-                color: #3d4445;
-                padding: 0 5px;
-            }
-            
-            @media screen and (max-width: $sm){
-                &.btn-proxima-pagina,
-                &.btn-ultima-pagina,
-                &.btn-primeira-pagina,
-                &.btn-pagina-anterior{
-                    display: block !important;
-                    margin: 15px 0 !important;
-                    text-align: center;
+
+            .btn_submit {
+                color: var(--textButton);
+                background-color: var(--bgButton);
+                text-decoration: none;
+                padding: 12px 30px;
+                border-radius: 30px;
+                display: inline-block;
+                transition: .3s;
+
+                &:hover {
+                    border-radius: 30px 30px 0;
+                }
+
+                &:before {
+                    content: "Enviar";
+                }
+
+                img {
+                    display: none;
                 }
             }
         }
-        
-        .editDep{
-            
-            img{
-                display: none;
+
+        .board {
+            h2.color {
+                text-align: center;
+                margin-top: 30px;
+                margin-bottom: 15px;
+                font-weight: $bold;
             }
-            
-            li{
-                border: none;
+
+            .editDep {
+                li {
+                    padding: 25px;
+                    background-color: #fff;
+                    border-radius: 30px 30px 0;
+                    margin-bottom: 20px;
+                    box-shadow: 1px 1px 0 0 #00000020;
+
+                    h3.color {
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin-bottom: 10px;
+                    }
+
+                    ul {
+                        li {
+                            padding: 0;
+                            margin: 0;
+                            background-color: transparent;
+                            box-shadow: none;
+                        }
+
+                        .dep {
+                            margin-top: 10px;
+                        }
+                    }
+                }
             }
-            
-            h3 {
-                border-left: 13px solid #eee;
-                margin: 5px;
-                padding: 1px;
-                padding-left: 5px;
-            }
-        }
-        
-        .separador-paginas{
-            display: none;
-        }
-        
-        #enviar_dep{
-            background: url('../img/send-button.png') no-repeat left top;
-            height: 0;
-            padding: 20px 65px;
-            width: 0;
         }
     }
 }

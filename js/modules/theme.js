@@ -1,6 +1,6 @@
 (function($){
     
-    $(document).ready( function(){
+    $(document).on("ready",  function(){
 
         document.getElementById("news-name").required;
         document.getElementById("news-email").required;
@@ -65,15 +65,3 @@
         }
     });
 })();
-
-// SLICK INIT
-(function slickInit(){
-    //PRODUCT CARROSSEL
-    $('.multiple-items').slick({
-      infinite: true,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      dots: false,
-      arrows: false
-    });
-})()

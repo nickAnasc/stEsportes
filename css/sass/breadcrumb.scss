@@ -1,35 +1,35 @@
 // breadcrumb
-.breadcrumb-text,
-.breadcrumb-text + .icon-breadcrumb{
-    display: none;
-}
+.breadcrumb-content {
+    .breadcrumb__flex {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
 
-.breadcrumb{
-    margin-bottom: 30px;
-    padding: 0 15px;
-    
-    a, 
-    .icon-breadcrumb{
-        color: #9c9c9c;
-        @include typo(1.2rem, 400, $font, 1.2rem);
-    }
-}
+        .breadcrumb__item {
+            font-weight: $semiBold;
+            padding: 5px 0;
+            
+            a {
+                color: #999;
+            }
 
-.breadcrumb-item{
-    @include typo(1.2rem, 400, $font, 1.2rem);
-    
-    &:last-child{
-        
-        a{
-            color: #c2a26f;    
+            .fa-angle-right {
+                margin-left: 5px;
+                margin-right: 5px;
+            }
         }
-    }
-}
 
-.icon-breadcrumb{
-    
-    &:before{
-        content: '/';
-        padding: 0 3px;
+        .breadcrumb__item.breadcrumb__item--selected {
+            background-color: var(--bgButton);
+            color: var(--textButton);
+            padding: 6px 8px 5px;
+            font-size: 12px;
+            border-radius: 5px;
+        }
     }
 }

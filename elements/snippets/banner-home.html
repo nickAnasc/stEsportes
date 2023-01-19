@@ -1,60 +1,39 @@
-{% if banners.home or banners.extra1 %}
-    {% if banners.extra1 and utils.is_mobile %}
-        <div class="banner-full">
-            <div class="slick">
-
-                {% if banners.extra1.type == 'javascript' %}
-                    {% for slide in banners.extra1.slides %}
-
-                        <div class="item">
-                            <a {% if slide.link %} href="{{ slide.link }}" {% if slide.target == '_blank' %} target="_blank" rel="noreferrer noopener" {% endif %}{% endif %}>
-                                <img src="{{ slide.image }}" alt="banner">
-                            </a>
-                        </div>
-
-                    {% endfor %}
-                {% else %}
-                    <div class="item">
-
-                        {% set link = banners.extra1.tracked_link ? banners.extra1.tracked_link : banners.extra1.link %}
-
-                        <a {% if banners.extra1.link %} href="{{ link }}" {% if banners.extra1.target == '_blank' %} target="_blank" rel="noreferrer noopener" {% endif %} {% endif %}>
-                            <img src="{{ banners.extra1.src }}" alt="banner">
-                        </a>
-
-                    </div>
-                {% endif %}
-
+{% if pages.current == 'home' %}
+    {% if settings.home_slick %}
+    <div class="banner-home">
+        {% if banners.home.slides and settings.home_slick %}
+            <div class="banner-home-slide" data-slick='{"autoplaySpeed": {{ ( settings.banner_interval ) }},
+                     "lazyLoad":     "{{ ( settings.banner_lazyload ) }}",
+                                      {{ ( settings.banner_arrows )             ? '"arrows":         true,' : '"arrows":         false,' }}
+                                      {{ ( settings.banner_dots )               ? '"dots":           true,' : '"dots":           false,' }}
+                                      {{ ( settings.banner_autoplay )           ? '"autoplay":       true,' : '"autoplay":       false,' }}
+                                      {{ ( settings.banner_adaptive_height )    ? '"adaptiveHeight": true,' : '"adaptiveHeight": false,' }}
+                                      {{ ( settings.banner_infinite )           ? '"infinite":       true,' : '"infinite":       false,' }}
+                                      {{ ( settings.banner_effect_fade )        ? '"fade":           true'  : '"fade":           false'  }} }'
+                data-autoplay="{{ settings.banner_autoplay ? 'true' : 'false' }}"
+            >
+                {% for slide in banners.home.slides %}
+                <div{{ loop.index == 1 ? ' class="first-slide"' }}>
+                    <a href="{{ slide.link }}" target="{{ slide.target }}">
+                        <img data-lazy="{{ slide.image }}" alt="{{ slide.label }}">
+                    </a>
+                </div>
+                {% endfor %}
             </div>
-        </div>
+
+            {% if settings.banner_arrows or settings.banner_dots  %}
+            <div class="banner-home-controls container">
+                <div class="slick-arrows"></div>
+            </div>
+            {% endif %}
+
+        {% else %}
+            <div class="banner banner-home">
+                {{ banner.home }}
+            </div>
+        {% endif %}
+    </div>
     {% else %}
-        <div class="banner-full">
-            <div class="slick">
-
-                {% if banners.home.type == 'javascript' %}
-                    {% for slide in banners.home.slides %}
-
-                        <div class="item">
-                            <a {% if slide.link %} href="{{ slide.link }}" {% if slide.target == '_blank' %} target="_blank" rel="noreferrer noopener" {% endif %} {% endif %}>
-                                <img src="{{ slide.image }}" alt="banner">
-                            </a>
-                        </div>
-
-                    {% endfor %}
-                {% else %}
-
-                    <div class="item">
-
-                        {% set link = banners.home.tracked_link ? banners.home.tracked_link : banners.home.link %}
-
-                        <a {% if banners.home.link %} href="{{ link }}" {% if banners.home.target == '_blank' %} target="_blank" rel="noreferrer noopener" {% endif %} {% endif %}>
-                            <img src="{{ banners.home.src }}" alt="banner">
-                        </a>
-
-                    </div>
-
-                {% endif %}
-            </div>
-        </div>
+    <div class="banner banner-home">{{ banner.home }}</div>
     {% endif %}
 {% endif %}

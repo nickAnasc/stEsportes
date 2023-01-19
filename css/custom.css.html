@@ -1,3 +1,10 @@
+/*
+Theme Name: Yart Default
+Theme URI:
+Author: Lincon Keiti Kusunoki
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
 
 /* color buy button on page product */
 .page-product .product-buy-button,
@@ -6,20 +13,64 @@ html .remove-bg .botao-comprar:hover,
 .page-checkout_cart .caixa-botoes .botao-commerce.botao-prosseguir-compra,
 .page-register .botao-prosseguir-cadastro,
 .page-register .botao-prosseguir-cadastro:hover{
-    background-color: var(--yellow);
-    color: var(--darkblue);
-    font-family: var(--Rajdhani);
+    background: {{ settings.color_buybutton }};
 }
 
 /* general buttons */
+.trigger-menu,
+.menu-mobile, 
+.search .search-button,
+.cart .cart-icon,
+.newsletter form button,
+.store-rating .dep_link a,
+.foo-rating .dep_link a,
+.box_skitter .info_slide .image_number_select,
+.box_skitter .info_slide .image_number_select:hover,
+.page-register #CadastroAbas .aberta a,
+.page-catalog .button-compare,
+.page-search .button-compare,
+.page-product #cepbox .botao-simular-frete,
+.page-product .products-visited .myNavigation,
+.page-product .products-visited .clearVisiteds,
+.page-product .products-visited .paginacao_ajax_prod #linksPag .pageON,
+.page-product .product-gallery .slider-nav .slick-arrow,
+.page-product .product-cross-sell .fotosCompreJunto .plus:after,
+.page-product .product-cross-sell .fotosCompreJunto .plus:before,
+.page-product .product-quantity > div > span,
+.page-product #bloco-add-lista a,
+.page-product .product-tabs #ProdAbas li,
+html .botao-commerce,
+html .botao-commerce:hover,
+html .botao-commerce:link,
+.page-catalog .filter-button,
+.page-search .filter-button{
+    background: {{ settings.color_primary }};
+}
+
 .page
 
 .smartfilter-button svg{
     fill: {{ settings.color_primary }}
 }
 
+.page-product .product-tabs #ProdAbas a{
+    color: {{ settings.color_abas }};
+}
+
 .page-product .products-visited .ValoresLista .precoAvista{
     color: {{ settings.color_primary }};
+}
+
+/* header */
+.customer,
+.customer a,
+.customer .orders a,
+.page-checkout_cart .caixa-total h3,
+.page-checkout_cart .caixa-total h3 div,
+.page-checkout_cart .caixa-total h3:before,
+.showcase > h2 strong,
+.showcase > h2 small{
+    color: {{ settings.color_font_header }};
 }
 
 .customer .orders a{
@@ -31,6 +82,8 @@ html .remove-bg .botao-comprar:hover,
 .foo-message{
     background: {{ settings.color_footer }};
 }
+
+
 
 .foo-content h3,
 .foo-content h5,
@@ -146,13 +199,11 @@ html .remove-bg .botao-comprar:hover,
 {# menu Mobile #}
 
 .menu-mobile{
-    background-color: var(--gray);
+    background: {{ settings.color_bg_menu_1 }};
 }
 
 .menu-mobile .link-level1{
-    color: var(--white);
-    font-family: var(--Rajdhani);
-    font-weight: bold;
+    color: {{ settings.color_menu_font_1 }}; 
 }
 
 .menu-mobile .level1-check:checked ~ .link-level1{
@@ -161,13 +212,11 @@ html .remove-bg .botao-comprar:hover,
 }
 
 .menu-mobile .level1-check:checked ~ .level2{
-    background-color: var(--white);
-    font-weight: 500;
+    background : {{ settings.color_bg_menu_2 }};
 }
 
 .menu-mobile .link-level2{
-    font-family: var(--Rajdhani);
-    color: var(--gray);
+    color: {{ settings.color_menu_font_2 }};
 }
 
 .menu-mobile .link-level3{

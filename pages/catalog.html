@@ -1,72 +1,43 @@
-<div class="container category-banner">
-    {% if banners.extra12 %}
-        <img class="banner-image" src="{{ banners.extra12.src }}">
-    {% endif %}
-</div>
-
-<div class="container catalog d-flex justify-between flex-wrap">
-    {% element 'snippets/breadcrumb' %}
-    <div class="catalog__content" modal-overlay>
-        <section class="catalog__filter">
-        <span modal-close>
-            <i class="fas fa-times"></i>
-        </span>
-        {% element 'new-smart-filter' %}
-    </section>
-    </div>
-    <div class="catalog__content">
-        <h1 class="catalog__name">{{ category.name }}</h1>
-        <section class="catalog__header">
-            {% if banner.title %}
-                <div class="banner banner__title">
-                    {{ banner.title }}
-                </div>
-            {% endif %}
-            
-            {% if products|length > 0 %}
-                
-                <div class="catalog__control d-flex justfy-between flex-wrap">
-                    {% element 'snippets/breadcrumb' %}
-                    {% if settings.compare %}
-                        <a href="/loja/comparador.php?loja={{store.id}}&IdDep={{category.id}}" class="button-compare">{{ Translation("comparar_produto") }}</a>
-                    {% endif %}
-                    {% element 'snippets/filter' {
-                        'brands': category.brands
-                    } %}
-                    <button class="btn-open-filter-mobile" modal-open>
-                        Filtro
-                    </button>
-                </div>
-                <div class="paginate__search">
-                    {{ paginate.counter('Encontramos {:count} produto(s) em {:pages} p&aacute;gina(s)') }}
-                </div>
-            {% endif %} 
-            
-            {% if category.small_description %}
-            <div class="category-description">
-                {{ category.small_description }}
+<section class="catalog">
+    <div class="container">
+        <div class="breadcrumb-mobile">
+            {% element 'snippets/breadcrumb' %}
+        </div>
+        <div class="catalog__flex">
+            <div class="catalog__filter">
+                {% element 'new-smart-filter' %}
             </div>
-            {% endif %}    
-        </section>
-        
-        {% if products|length > 0 %}
-        
-            <section class="catalog-content clearfix">
-                {% element 'showcase-catalog' {
-                    "products": products
-                } %}
-            </section>
-        {% else %}
-            
-        {% endif %}
-        
-        {% if banner.bottom %}
-            <div class="banner banner-bottom ">
-                {{ banner.bottom }}
+            <div class="catalog__showcase">
+                <div class="flex-showcase-components">
+                    <div class="breadcrumb-desk">
+                        {% element 'snippets/breadcrumb' %}
+                    </div>
+                    <div class="btn-compare-catalog">
+                        <a class="btn-compare" href="/loja/comparador.php?loja={{ store.id }}" alt="comparar">Comparar</a>
+                    </div>
+                    <div>
+                        {% element 'snippets/filter-order' %}
+                    </div>
+                    <div class="mobile-filter action-filter open">
+                        <i class="fas fa-filter"></i> Filtro
+                    </div>
+                </div>
+                {% element 'showcase-catalog' %}
+                {% element 'snippets/paginate' %}
             </div>
-        {% endif %}
-        <div class="pagination">
-            {% element 'snippets/paginate' %}
         </div>
     </div>
-</div>
+</section>
+
+<script>
+    (function(){
+        var openFilter = document.querySelectorAll('.action-filter');
+        var filterMobileContent = document.querySelector('.catalog__filter');
+
+        openFilter.forEach(element => {
+            element.addEventListener('click', function() {
+                this.classList.contains('open') ? filterMobileContent.classList.add('open') : filterMobileContent.classList.remove('open');
+            })
+        });
+    })();
+</script>

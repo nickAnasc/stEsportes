@@ -27,9 +27,9 @@
             {% endif %}
         </div>
     
-        <div class="product-name" itemprop="name">{{ product.name }}</div>
+        <div class="product-name" itemprop="name">{{ product.name|length > 45 ? product.name[0:45] ~ '...' : product.name }}</div>
 
-        <span class="ranking">
+        <span class="ranking-content">
             {% set ranking = product.ranking %}
             <span class="ranking">
                 {% if ranking.rating > 0 %}
@@ -97,7 +97,12 @@
         </a>
     </div>
     {% endif %}
-    <a class="btn-comprar" href="{{ product.link }}" alt="comprar"> Comprar</a>
+    <a class="btn-comprar" href="{{ product.link }}" alt="comprar">
+        {{ product.upon_request ? "Consultar Preço" : "Comprar" }}
+        {% if product.upon_request == false %}
+            <i class="fas fa-arrow-right"></i>
+        {% endif %}
+    </a>
 </div>
 
 <script>

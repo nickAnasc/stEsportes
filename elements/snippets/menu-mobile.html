@@ -1,60 +1,57 @@
-<div class="menu-mobile-backdrop visible-xs-block"></div>
-<div class="menu-mobile visible-xs-block">  
-    <div class="close-menu">
-        <i class="fas fa-times-circle"></i>
-    </div>
-    <div class="overflow-menu-mobile">
-        <div class="header-menu">
-            <div class="user-menu d-flex align-center justify-between">
-                {% if customer.logged %}
-                    <p class="loginMobile">Olá {{ customer.name }}</p>
-                    <p class="loginMobile sair"><a href="{{ links.logout }}">Sair</a></p>
-                {% else %}
-                    <p class="loginMobile"><a href="{{ links.login }}">Login</a> ou <a href="{{ links.register }}">Cadastrar-se</a></p>
-                {% endif %}
-            </div>
+<nav class="menu mobile">
+    <div class="menu__content">
+        <div class="menu__title">
+            <h4 class="title">Menu</h4> <i class="btn-menu far fa-times-circle" data-action="close"></i>
         </div>
-        <ul class="categories-mobile level1">
-            {% for level1 in categories %}
+        <ul class="first-lvl">
+            {% for category in categories %}
                 {% if loop.index <= limit or not limit %}
-                    <li class="item-level1">
-                        {% if level1.children %}
-                        <input type="checkbox" id="mobile-item-{{ level1.id }}" class="level1-check"/>
-                        <label class="link-level1" for="mobile-item-{{ level1.id }}" data-tray-tst="categoria_lvl_1">
-                            <a href="{{ level1.link }}">{{ level1.name }}</a>
-                            <i class="pull-right arrow-menu-mobile fas fa-angle-right"></i>
-                        </label>
-                        {% else %}
-                        <a href="{{ level1.link }}" class="link-level1" data-tray-tst="categoria_lvl_1">{{ level1.name }}</a>
-                        {% endif %}
-                        
-                        {% if level1.children %}
-                            <div class="level2">
-                                <ul>
-                                    {% for level2 in level1.children %}
-                                        <li class="item-level2">
-                                            <a href="{{ level2.link }}" class="link-level2" data-tray-tst="categoria_lvl_2">{{ level2.name }}</a>
-                                            {% if level2.children %}
-                                                <div class="level3">
-                                                    <ul>
-                                                        {% for level3 in level2.children %}
-                                                            <li class="item-level3">
-                                                                <a href="{{ level3.link }}" class="link-level3" data-tray-tst="categoria_lvl_3">{{ level3.name }}</a>
-                                                                {% if level3.children %}
-                                                                {% endif %}
-                                                            </li>
-                                                        {% endfor %}
-                                                    </ul>
-                                                </div>
-                                            {% endif %}
+                    <li class="first-lvl__item">
+                        {% if category.children  %}
+                            <span class="link-item drop-item">
+                                {{ category.name }}
+                            </span>
+                            <i class="fas fa-angle-down"></i>
+                            <ul class="second-lvl">
+                                {% for childSecond in category.children %}
+                                    {% if loop.index == 1 %}
+                                        <li class="second-lvl__item">
+                                            <a class="link-item" href="{{ category.link }}">{{ category.name }}</a>
                                         </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                                    {% endif %}
+                                    <li class="second-lvl__item">
+                                        {% if childSecond.children  %}
+                                            <span class="link-item drop-third">{{ childSecond.name }}</span>
+                                            <i class="fas fa-angle-down"></i>
+                                            <ul class="third-lvl">
+                                                {% for child in childSecond.children %}
+                                                    {% if loop.index == 1 %}
+                                                    <li class="third-lvl__item">
+                                                        <a class="link-item" href="{{ child.link }}">{{ childSecond.name }}</a>
+                                                    </li>
+                                                    {% endif %}
+                                                    <li class="third-lvl__item">
+                                                        <a class="link-item" href="{{ child.link }}">{{ child.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% else %}
+                                            <a class="link-item" href="{{ childSecond.link }}">{{ childSecond.name }}</a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <a class="link-item" href="{{ category.link }}">{{ category.name }}</a>
                         {% endif %}
                     </li>
                 {% endif %}
             {% endfor %}
         </ul>
     </div>
-</div>
+    <div class="login">
+        <a href="{{ links.login }}" class="login__item"><i class="far fa-user"></i> Entrar / Cadastrar</a>
+        <a href="{{ links.orders }}" class="login__item"><i class="far fa-list-alt"></i> Meus Pedidos</a>
+        <a href="{{ links.contact }}" class="login__item"><i class="far fa-question-circle"></i> Precisa de Ajuda?</a>
+    </div>
+</nav>

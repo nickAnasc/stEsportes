@@ -1,121 +1,121 @@
-<!-- featured
-new
-free_shipping
-promotion
-top_seller -->
- 
-<!-- {% set showAvailable = settings.show_available_products ? 'available' %} -->
+<!-- 
+	*****FILTROS PARA USAR NOS CARROSSÉIS*****
+	featured   |      new      | free_shipping
+	promotion  |  top_seller   | 
+-->
 
-<div id="prognoos_popv1"></div>
+<!-- BANNER PRINCIPAL -->
+{% element 'snippets/banner-main' %}
 
-<!-- BANNER PRINCIPAL HOME -->
-{% element 'snippets/banner-home' %}
-<!-- FIM BANNER PRINCIPAL HOME -->
-
-<!-- RÉGUA -->
-{% element 'snippets/regua' %}
-<!-- FIM RÉGUA -->
-
-<!-- CARROSSEL DE MARCAS -->
-<section class="home__section brand container-fluid">
-    {% element 'snippets/brand' %}
-</section>
-<!-- FIM CARROSSEL DE MARCAS -->
+<!-- CARROSSÉL REGUA -->
+{% if settings.booleanRegua %}
+	{% element 'snippets/regua-carrossel' %}
+{% endif %}
 
 <!--CARROSSEL DESTAQUE -->
-<div class="destaque">
-    {% if settings.ativarDestaque %}
-        {% set productFeatured = Products({
-            'filter': ['available', "featured"],
-            'order': 'rand',
-            'limit': settings.qtdeDestaque ? settings.qtdeDestaque : 4
-        }) %}
+{% if settings.booleanDestaque %}
+	<div class="destaque">
+		{% set productFeatured = Products({
+			'filter': ['available', "featured"],
+			'order': 'rand',
+			'limit': settings.qtdVitDestaque ? settings.qtdVitDestaque : 20
+		}) %}
 
-        {% element 'showcase' {
-            "products": productFeatured,
-            "showcaseTitle": settings.titleDestaque ? settings.titleDestaque : "Destaque"
-        } %}
-    {% endif %}
-</div>
-<!--FIM CARROSSEL DESTAQUE -->
+		{% element 'showcase' {
+			"products": productFeatured,
+			"showcaseTitle": settings.titleVitDestaque ? settings.titleVitDestaque : "Destaque"
+		} %}
+	</div>
+{% endif %}
 
 <!-- BANNER TRIPLO -->
-{% element 'snippets/tripleBanner' %}
-<!-- FIM BANNER TRIPLO -->
+{% element 'snippets/banner-topo' %}
 
+{% if settings.booleanNovidades %}
 <!--CARROSSEL NOVIDADES -->
-<div class="novidades">
-    {% if settings.ativarNovidade %}
-        {% set productNew = Products({
-            'filter': ['available', "new"],
-            'order': 'rand',
-            'limit': settings.qtdeNovidade ? settings.qtdeNovidade : 4
-        }) %}
+	<div class="novidades">
+		{% set productNew = Products({
+			'filter': ['available', "new"],
+			'order': 'rand',
+			'limit': settings.qtdVitNovidades ? settings.qtdVitNovidades : 10
+		}) %}
 
-        {% element 'showcase' {
-            "products": productNew,
-            "showcaseTitle": settings.titleNovidade ? settings.titleNovidade : "Novidades"
-        } %}
-    {% endif %}
-</div>
-<!--FIM CARROSSEL NOVIDADES -->
+		{% element 'showcase' {
+			"products": productNew,
+			"showcaseTitle": settings.titleVitNovidades ? settings.titleVitNovidades : "Novidades"
+		} %}
+	</div>
+{% endif %}
 
-<!--CARROSSEL FRETE GRÁTIS -->
-<div class="frete-gratis">
-    {% if settings.ativarFreteGratis %}
-        {% set productFreteGratis = Products({
-            'filter': ['available', "free_shipping"],
-            'order': 'rand',
-            'limit': settings.qtdeFreteGratis ? settings.qtdeFreteGratis : 4
-        }) %}
+<!-- BANNER LINE -->
+{% element 'snippets/banner-centro' %}
 
-        {% element 'showcase' {
-            "products": productFreteGratis,
-            "showcaseTitle": settings.titleFreteGratis ? settings.titleFreteGratis : "Frete Grátis"
-        } %}
-    {% endif %}
-</div>
-<!--FIM CARROSSEL NOVIDADES -->
+<!-- GRID PRODUTOS -->
+{% if settings.booleanPromocoes %}
+	<div class="promocoes">
+		{% set productPromotion = Products({
+			'filter': ['available', "promotion"],
+			'order': 'rand',
+			'limit': settings.qtdVitPromocoes ? settings.qtdVitPromocoes : 8
+		}) %}
 
-<!-- BANNER TRIPLO BAIXO-->
-{% element 'snippets/bannerTriploBaixo' %}
-<!-- FIM BANNER TRIPLO BAIXO -->
+		{% element 'showcase-grid' {
+			"products": productPromotion,
+			"showcaseTitle": settings.titleVitPromocoes ? settings.titleVitPromocoes : "Promoções"
+		} %}
+	</div>
+{% endif %}
 
-<!--CARROSSEL PROMOÇÕES -->
-<div class="promocoes">
-    {% if settings.ativarVitrinePromo %}
-        {% set productPromotion = Products({
-            'filter': ['available', "promotion"],
-            'order': 'rand',
-            'limit': settings.qtdePromocao ? settings.qtdePromocao : 4
-        }) %}
-
-        {% element 'showcase' {
-            "products": productPromotion,
-            "showcaseTitle": settings.titlePromocao ? settings.titlePromocao : "Promoção"
-        } %}
-    {% endif %}
-</div>
-<!--FIM CARROSSEL NOVIDADES -->
+<!-- MARCAS -->
+{% if settings.booleanMarcas %}
+	{% element 'snippets/brands' %}
+{% endif %}
 
 <!-- NOTÍCIAS -->
-<section class="notices container">
-    <h2 class="notices__tittle">Notícias e Dicas</h2>
-    <div class="noticias-content">
-    </div>
-    <div class="see-more-news">
-        <a href="/noticias">Veja mais Notícias</a> 
-    </div>
-</section>
-<!-- FIM NOTÍCIAS -->
+{% if settings.booleanNoticias %}
+	{% element 'snippets/noticias' %}
+{% endif %}
 
-<!-- DEPOIMENTOS -->
-<section class="depositions container">
-    <h3 class="depositions__title">Depoimentos</h3>
-    <div class="controls">
-        {% element 'CustomerReview.reviews' %}
-        <button aria-label="Previous" class="dep-prev"><i class="fas fa-chevron-left"></i></button>
-        <button aria-label="Next" class="dep-next"><i class="fas fa-chevron-right"></i></button>
-    </div>
-</section>
-<!-- FIM DEPOIMENTOS -->
+<!-- BANNER DUPLO
+{% element 'snippets/banner-duplo' %}
+
+{% if pages.current == 'home' %}
+	{{ banner.popup ~ banner.floating }}
+{% endif %} -->
+
+<!-- REVIEWS -->
+{% if settings.booleanDepoimentos %}
+	<section class="reviews">
+		<div class="container carrrossel-reviews">
+			<h1 class="showcase__title">{{ settings.titleDepoimentos ? settings.titleDepoimentos : "Depoimentos" }}</h1>
+			{% element 'CustomerReview.reviews' %}
+				
+			<div class="mais-dep">
+				<a href="/depoimentos-de-clientes">Ver todos</a>
+			</div>
+		</div>
+	</section>
+{% endif %}
+
+CARROSSEL CATEGORIA
+{% if settings.idVitCategorias %}
+	{% if settings.booleanCategoria %}
+	<div class="carrosse-categories">
+		{% set productCategoriaUm = Products({
+			'filter': ['available'],
+			'order': 'rand',
+			'limit': settings.qtdVitCategorias ? settings.qtdVitCategorias : 10,
+			'categories': settings.idVitCategorias
+		}) %}
+		
+		{% element 'showcase' {
+			"products": productCategoriaUm,
+			"showcaseTitle": settings.titleVitCategorias ? settings.titleVitCategorias : "Nossos Produtos"
+		} %}
+	</div>
+	{% endif %}
+{% endif %}
+
+<!-- NEWSLETTER -->
+{% element 'snippets/newsletter' %}
+
