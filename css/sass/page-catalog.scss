@@ -28,7 +28,7 @@
             margin:20px;
             padding: 15px;
             background-color: #fff;
-            border-radius: 20px 20px 0;
+            border-radius: 5px;
             flex-wrap: wrap;
 
             @media(max-width: 991px) {
@@ -93,7 +93,7 @@
                 color: var(--textButton);
                 background-color: var(--bgButton);
                 padding: 9px 10px 7px;
-                border-radius: 15px 15px 0;
+                border-radius: 5px;
                 display: none;
 
                 @media(max-width: 991px) {

@@ -11,7 +11,7 @@
     .filter__form {
         background-color: #fff;
         padding: 20px;
-        border-radius: 20px 20px 0;
+        border-radius: 5px;
 
         .action-filter.close {
             display: none;
@@ -108,7 +108,7 @@
                     .filter__input:checked + .label-input {
                         background-color: var(--bgButton);
                         border: 3px solid var(--bgButton);
-                        border-radius: 30px 30px 18px;
+                        border-radius: 50%;
                     }
                 }
 

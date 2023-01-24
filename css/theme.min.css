@@ -1978,7 +1978,7 @@ div[id^="AbaPersonalizada"] table td {
       margin: 20px;
       padding: 15px;
       background-color: #fff;
-      border-radius: 20px 20px 0;
+      border-radius: 5px;
       flex-wrap: wrap; }
       @media (max-width: 991px) {
         .catalog .catalog__showcase .flex-showcase-components {
@@ -2027,7 +2027,7 @@ div[id^="AbaPersonalizada"] table td {
         color: var(--textButton);
         background-color: var(--bgButton);
         padding: 9px 10px 7px;
-        border-radius: 15px 15px 0;
+        border-radius: 5px;
         display: none; }
         @media (max-width: 991px) {
           .catalog .catalog__showcase .flex-showcase-components .mobile-filter {
@@ -3260,7 +3260,7 @@ div[id^="AbaPersonalizada"] table td {
       margin: 0 auto;
       background-color: var(--bgButton);
       padding: 10px 40px;
-      border-radius: 30px 30px 0;
+      border-radius: 5px;
       margin-top: -20px;
       transition: .3s;
       text-decoration: none; }
@@ -5183,14 +5183,14 @@ div[id^="AbaPersonalizada"] table td {
         margin-left: 5px;
         color: var(--textMenu); }
       .header .menu .item-category .flex-menu-prod {
-        width: 75%;
+        width: 80%;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
         -ms-flex-wrap: wrap;
         flex-wrap: wrap; }
       .header .menu .item-category .prod-menu {
-        width: 25%; }
+        width: 20%; }
         .header .menu .item-category .prod-menu .product {
           display: -webkit-box;
           display: -ms-flexbox;
@@ -5209,7 +5209,7 @@ div[id^="AbaPersonalizada"] table td {
           position: relative;
           background-color: var(--prorductBG);
           padding: 20px 20px;
-          border-radius: 15px 15px 0;
+          border-radius: 5px;
           border-right: 1px solid #ddd;
           border-bottom: 1px solid #ddd; }
           .header .menu .item-category .prod-menu .product a {
@@ -5238,7 +5238,7 @@ div[id^="AbaPersonalizada"] table td {
             background-color: var(--bgButton);
             text-transform: uppercase;
             padding: 13px 60px;
-            border-radius: 20px 20px 0;
+            border-radius: 5px;
             transition: .3s; }
             @media (max-width: 535px) {
               .header .menu .item-category .prod-menu .product .btn-comprar {
@@ -5371,7 +5371,7 @@ div[id^="AbaPersonalizada"] table td {
         .header .menu .item-category:hover .drop-content-first-lvl {
           opacity: 1;
           visibility: visible;
-          border-radius: 20px 20px 0; }
+          border-radius: 5px; }
     .header .menu .more-categories {
       font-weight: 700;
       padding: 8px 15px;
@@ -5409,7 +5409,7 @@ div[id^="AbaPersonalizada"] table td {
         visibility: hidden;
         height: 0;
         transition: .3s;
-        border-radius: 20px 20px 0;
+        border-radius: 5px;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -5440,13 +5440,11 @@ div[id^="AbaPersonalizada"] table td {
           visibility: visible;
           height: auto;
           background-color: var(--bgMenu);
-          border-radius: 20px 20px 0;
+          border-radius: 5px;
           padding: 10px;
           margin-top: 10px; }
       .header .menu .more-categories:hover {
-        background-color: var(--hoverMenu);
-        border-radius: 0 0 20px 20px;
-        border-top: 1px solid var(--hoverTextMenu); }
+        background-color: var(--hoverMenu); }
         .header .menu .more-categories:hover .more-categories__item a {
           color: var(--bgMenu); }
         .header .menu .more-categories:hover .link-more-cat {
@@ -5847,9 +5845,7 @@ div[id^="AbaPersonalizada"] table td {
       width: 100%; } }
   .cart-resume .cart-title,
   .cart-resume .total-resume {
-    background: -webkit-gradient(linear, left top, right top, from(var(--bgMenu)), to(var(--bgHeader)));
-    background: -o-linear-gradient(left, var(--bgMenu), var(--bgHeader));
-    background: linear-gradient(to right, var(--bgMenu), var(--bgHeader));
+    background-color: var(--bgMenu);
     padding: 25px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -5865,7 +5861,7 @@ div[id^="AbaPersonalizada"] table td {
     .cart-resume .total-resume .btn-total {
       background-color: #fff;
       padding: 20px;
-      border-radius: 30px 30px 0;
+      border-radius: 5px;
       color: #000;
       font-weight: bold;
       transition: .3s;
@@ -5944,7 +5940,7 @@ div[id^="AbaPersonalizada"] table td {
         background-color: #641212;
         color: #fff;
         padding: 8px;
-        border-radius: 30px 30px 0;
+        border-radius: 5px;
         font-size: 12px;
         transition: .3s; }
         .cart-resume .cart-content .cart-item .delete-prod:hover {
@@ -6107,7 +6103,7 @@ div[id^="AbaPersonalizada"] table td {
     background-color: var(--bgHeader);
     color: var(--textMenu);
     margin: 10px;
-    border-radius: 20px 20px 0; }
+    border-radius: 5px; }
     .menu.mobile .menu__title h4 {
       text-transform: uppercase;
       font-weight: 700; }
@@ -6139,7 +6135,7 @@ div[id^="AbaPersonalizada"] table td {
           padding: 10px;
           background-color: #373f4e;
           margin-top: 10px;
-          border-radius: 15px 15px 0; }
+          border-radius: 5px; }
           .menu.mobile .first-lvl .first-lvl__item .second-lvl .third-lvl.open .third-lvl__item {
             margin-bottom: 18px; }
             .menu.mobile .first-lvl .first-lvl__item .second-lvl .third-lvl.open .third-lvl__item:last-child {
@@ -6151,7 +6147,7 @@ div[id^="AbaPersonalizada"] table td {
         padding: 15px;
         background-color: var(--bgHeader);
         margin-top: 10px;
-        border-radius: 20px 20px 0; }
+        border-radius: 5px; }
         .menu.mobile .first-lvl .first-lvl__item .second-lvl.open .second-lvl__item {
           margin-bottom: 18px; }
           .menu.mobile .first-lvl .first-lvl__item .second-lvl.open .second-lvl__item:last-child {
@@ -6181,7 +6177,7 @@ div[id^="AbaPersonalizada"] table td {
       background-color: var(--bgHeader);
       color: var(--textHeader);
       padding: 15px;
-      border-radius: 20px 20px 0;
+      border-radius: 5px;
       border-bottom: 1px solid; }
       .menu.mobile .login .login__item:last-child {
         margin-bottom: 0; }
@@ -7101,7 +7097,7 @@ div[id^="AbaPersonalizada"] table td {
 .filter .filter__form {
   background-color: #fff;
   padding: 20px;
-  border-radius: 20px 20px 0; }
+  border-radius: 5px; }
   .filter .filter__form .action-filter.close {
     display: none; }
   @media (max-width: 991px) {
@@ -7171,7 +7167,7 @@ div[id^="AbaPersonalizada"] table td {
       .filter .filter__form .filter__block .filter__list .filter__item .filter__input:checked + .label-input {
         background-color: var(--bgButton);
         border: 3px solid var(--bgButton);
-        border-radius: 30px 30px 18px; }
+        border-radius: 50%; }
     .filter .filter__form .filter__block .filter__list .filter__item.filter__item--checked {
       position: relative;
       transition: 0.3s;
