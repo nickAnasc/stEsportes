@@ -13,8 +13,8 @@
         </div>
     {% else %}
         <div class="customer__flex">
-            <i class="far fa-user"></i>
-            <a href="{{ links.login }}"><strong>Login / Cadastro</strong></a>
+            <a href="{{ links.login }}"><i class="far fa-user"></i></a>
+            <a href="{{ links.login }}" class="hide-login"><strong>Login / Cadastro</strong></a>
         </div>
     {% endif %}
 </div>

@@ -42,7 +42,7 @@
             -ms-flex-pack: justify;
                 justify-content: space-between;
         padding: 15px;
-        background-color: var(--bgHeader);
+        background-color: var(--hoverMenu);
         color: var(--textMenu);
         margin: 10px;
         border-radius: 5px;
@@ -54,7 +54,7 @@
 
         .fa-times-circle {
             font-size: 20px;
-            color: var(--iconHeader);
+            color: var(--textMenu);
         }
     }
 
@@ -109,7 +109,7 @@
                 visibility: visible;
                 height: auto;
                 padding: 15px;
-                background-color: var(--bgHeader);
+                background-color: var(--hoverMenu);
                 margin-top: 10px;
                 border-radius: 5px;
 

@@ -8,7 +8,10 @@
 
         a {
             color: var(--textHeader);
-            @media(max-width: 1199px) {
+        }
+
+        @media(max-width: 1199px) {
+            .hide-login {
                 display: none;
             }
         }

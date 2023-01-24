@@ -1979,7 +1979,8 @@ div[id^="AbaPersonalizada"] table td {
       padding: 15px;
       background-color: #fff;
       border-radius: 5px;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+      margin-right: auto; }
       @media (max-width: 991px) {
         .catalog .catalog__showcase .flex-showcase-components {
           margin-left: 0; }
@@ -5609,6 +5610,10 @@ div[id^="AbaPersonalizada"] table td {
     margin-top: 20px; }
     .footer .dev-by .dev-by__text {
       width: 60%; }
+    .footer .dev-by .logo-footer {
+      background-color: #111;
+      padding: 5px;
+      border-radius: 5px; }
     @media (max-width: 580px) {
       .footer .dev-by {
         -webkit-box-orient: vertical;
@@ -5771,9 +5776,9 @@ div[id^="AbaPersonalizada"] table td {
   transition: .3s; }
   .customer .customer__flex a {
     color: var(--textHeader); }
-    @media (max-width: 1199px) {
-      .customer .customer__flex a {
-        display: none; } }
+  @media (max-width: 1199px) {
+    .customer .customer__flex .hide-login {
+      display: none; } }
 
 .customer .drop-login {
   transition: .1s;
@@ -6097,7 +6102,7 @@ div[id^="AbaPersonalizada"] table td {
     -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 15px;
-    background-color: var(--bgHeader);
+    background-color: var(--hoverMenu);
     color: var(--textMenu);
     margin: 10px;
     border-radius: 5px; }
@@ -6106,7 +6111,7 @@ div[id^="AbaPersonalizada"] table td {
       font-weight: 700; }
     .menu.mobile .menu__title .fa-times-circle {
       font-size: 20px;
-      color: var(--iconHeader); }
+      color: var(--textMenu); }
   .menu.mobile .first-lvl {
     padding: 10px 25px 25px; }
     .menu.mobile .first-lvl .link-item {
@@ -6142,7 +6147,7 @@ div[id^="AbaPersonalizada"] table td {
         visibility: visible;
         height: auto;
         padding: 15px;
-        background-color: var(--bgHeader);
+        background-color: var(--hoverMenu);
         margin-top: 10px;
         border-radius: 5px; }
         .menu.mobile .first-lvl .first-lvl__item .second-lvl.open .second-lvl__item {

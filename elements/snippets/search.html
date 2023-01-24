@@ -11,18 +11,22 @@
 </div>
 
 <script>
-    function callback(mutations) {
-        var suggestion = document.querySelector('.suggestion[data-container="suggestion"]')
+   function callback(mutations) {
+        var suggestion = document.querySelectorAll('.suggestion[data-container="suggestion"]')
         var p = document.createElement('p')
         p.classList.add('no-results')
-        if (suggestion.childNodes.length === 1) {
-            suggestion.append(p)
-            document.querySelector('.no-results').textContent = 'Nenhum resultado encontrado'
-        }
+        
+        suggestion.forEach(el => {
+            if (el.childNodes.length === 1) {
+                el.setAttribute("style", "height: auto;")
+                el.append(p)
+                document.querySelector('.no-results').textContent = 'Nenhum resultado encontrado'
+            }
+        })
     }
     
     (function(){
-        var search = document.querySelector('.search-key')
+        var search = document.querySelector('.header__content')
         var observer = new MutationObserver(callback)
         let options = {
             childList: true,
@@ -33,8 +37,7 @@
             attributeOldValue: false,
             characterDataOldValue: false
         };
-        
-        
+              
         search.addEventListener('keyup', function() {
             observer.observe(document.querySelector('.search form'), options)
         })
