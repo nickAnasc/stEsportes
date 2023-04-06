@@ -60,10 +60,41 @@
                         arrImages.push(`<img class="thumb change-photo"  onClick="changeMainPhoto('${imgs.https}')" data-original="${imgs.https}" src="${imgs.thumbs['180'].https}">`)
                     });
 
-                    document.querySelector('.thumb-carrossel .glider-track').innerHTML = arrImages.join(' ');
+                    $('.thumb-carrossel').slick('unslick');
 
-                    var glider = new Glider(document.querySelector('.thumb-carrossel'));
-                    glider.refresh();
+                    document.querySelector('.thumb-carrossel').innerHTML = arrImages.join(' ');
+
+                    $('.thumb-carrossel').slick({
+                        infinite: true,
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                        autoplay: false,
+                        autoplaySpeed: 3000,
+                        prevArrow: '<button class="slider-prev" style="z-index: 1;"><i class="fas fa-angle-left"></i></button>',
+                        nextArrow: '<button class="slider-next"><i class="fas fa-angle-right"></i></button>',
+                        responsive: [
+                            {
+                                breakpoint: 768,
+                                settings: {
+                                    slidesToShow: 3
+                                }
+                            },
+                            {
+                                breakpoint: 500,
+                                settings: {
+                                    slidesToShow: 2
+                                }
+                            },
+                            {
+                                breakpoint: 320,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                    duration: 1
+                                }
+                            }
+                        ]
+                    })
                 });
             });
 
